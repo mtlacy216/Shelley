@@ -13,6 +13,7 @@
 
     <video id="camera" autoplay></video>
     <button id="capture">Capture</button>
+    <button id="fullscreen">Fullscreen</button>
     <canvas id="canvas" style="display:none;"></canvas>
     <img id="photo" src="">
 
@@ -21,6 +22,7 @@
         let canvas = document.getElementById('canvas');
         let photo = document.getElementById('photo');
         let captureButton = document.getElementById('capture');
+        let fullscreenButton = document.getElementById('fullscreen');
 
         // Get access to the camera
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
@@ -34,7 +36,7 @@
                 });
         }
 
-        // Capture the photo and send it to the webhook
+        // Capture the photo
         captureButton.addEventListener('click', function() {
             canvas.width = video.videoWidth;
             canvas.height = video.videoHeight;
@@ -43,6 +45,19 @@
             photo.setAttribute('src', 'data:image/png;base64,' + imageData);
 
             sendImageToWebhook(imageData);
+        });
+
+        // Fullscreen functionality
+        fullscreenButton.addEventListener('click', function() {
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            } else if (video.mozRequestFullScreen) { // Firefox
+                video.mozRequestFullScreen();
+            } else if (video.webkitRequestFullscreen) { // Chrome, Safari and Opera
+                video.webkitRequestFullscreen();
+            } else if (video.msRequestFullscreen) { // IE/Edge
+                video.msRequestFullscreen();
+            }
         });
 
         // Function to convert base64 image to blob and send it to the webhook using FormData
@@ -63,7 +78,7 @@
 
             fetch('https://hooks.zapier.com/hooks/catch/6501299/303vhv0/', {
                 method: 'POST',
-                body: formData // Note: No need to set Content-Type header, as it will be set automatically by the browser when sending FormData
+                body: formData
             })
             .then(response => {
                 if (!response.ok) {
