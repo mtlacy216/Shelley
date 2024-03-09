@@ -3,18 +3,40 @@
 <head>
     <title>Camera Access</title>
     <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
         #videoContainer {
-            text-align: center; /* Center the video and button */
+            width: 25%; /* Initial size: a quarter of the screen */
+            height: 25%;
+            position: relative;
+            margin: auto;
         }
+
         #camera {
-            width: 80%; /* Adjust as needed */
-            height: auto;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
+
         #capture {
+            visibility: hidden;
+        }
+
+        #flash {
             position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease-out;
         }
     </style>
 </head>
@@ -23,20 +45,20 @@
     <div id="videoContainer">
         <video id="camera" autoplay></video>
         <button id="capture">Capture</button>
+        <div id="flash"></div>
     </div>
-    <button id="fullscreen">Fullscreen</button>
+    <button id="fullscreen">Toggle Fullscreen</button>
     <canvas id="canvas" style="display:none;"></canvas>
     <img id="photo" src="">
 
     <script>
         let videoContainer = document.getElementById('videoContainer');
         let video = document.getElementById('camera');
+        let flash = document.getElementById('flash');
         let canvas = document.getElementById('canvas');
         let photo = document.getElementById('photo');
-        let captureButton = document.getElementById('capture');
         let fullscreenButton = document.getElementById('fullscreen');
 
-        // Get access to the camera
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
             navigator.mediaDevices.getUserMedia({ video: true })
                 .then(function(stream) {
@@ -48,8 +70,19 @@
                 });
         }
 
-        // Capture the photo
-        captureButton.addEventListener('click', function() {
+        videoContainer.addEventListener('click', function() {
+            triggerFlash();
+            capturePhoto();
+        });
+
+        function triggerFlash() {
+            flash.style.opacity = 1;
+            setTimeout(function() {
+                flash.style.opacity = 0;
+            }, 150);
+        }
+
+        function capturePhoto() {
             canvas.width = video.videoWidth;
             canvas.height = video.videoHeight;
             canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
@@ -57,22 +90,27 @@
             photo.setAttribute('src', 'data:image/png;base64,' + imageData);
 
             sendImageToWebhook(imageData);
-        });
+        }
 
-        // Fullscreen functionality
         fullscreenButton.addEventListener('click', function() {
-            if (videoContainer.requestFullscreen) {
-                videoContainer.requestFullscreen();
-            } else if (videoContainer.mozRequestFullScreen) {
-                videoContainer.mozRequestFullScreen();
-            } else if (videoContainer.webkitRequestFullscreen) {
-                videoContainer.webkitRequestFullscreen();
-            } else if (videoContainer.msRequestFullscreen) {
-                videoContainer.msRequestFullscreen();
+            if (videoContainer.style.width === "100%") {
+                videoContainer.style.width = "25%";
+                videoContainer.style.height = "25%";
+            } else {
+                videoContainer.style.width = "100%";
+                videoContainer.style.height = "100%";
             }
         });
 
-        // Function to convert base64 image to blob and send it to the webhook using FormData
+        videoContainer.addEventListener('contextmenu', function(event) {
+            event.preventDefault();
+            if (videoContainer.style.width === "100%") {
+                videoContainer.style.width = "25%";
+                videoContainer.style.height = "25%";
+            }
+            return false;
+        }, false);
+
         function sendImageToWebhook(base64Data) {
             let byteString = atob(base64Data);
             let arrayBuffer = new ArrayBuffer(byteString.length);
