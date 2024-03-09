@@ -3,21 +3,33 @@
 <head>
     <title>Camera Access</title>
     <style>
+        #videoContainer {
+            text-align: center; /* Center the video and button */
+        }
         #camera {
-            width: 100%;
+            width: 80%; /* Adjust as needed */
             height: auto;
+        }
+        #capture {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
         }
     </style>
 </head>
 <body>
 
-    <video id="camera" autoplay></video>
-    <button id="capture">Capture</button>
+    <div id="videoContainer">
+        <video id="camera" autoplay></video>
+        <button id="capture">Capture</button>
+    </div>
     <button id="fullscreen">Fullscreen</button>
     <canvas id="canvas" style="display:none;"></canvas>
     <img id="photo" src="">
 
     <script>
+        let videoContainer = document.getElementById('videoContainer');
         let video = document.getElementById('camera');
         let canvas = document.getElementById('canvas');
         let photo = document.getElementById('photo');
@@ -41,7 +53,7 @@
             canvas.width = video.videoWidth;
             canvas.height = video.videoHeight;
             canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
-            let imageData = canvas.toDataURL('image/png').split(',')[1]; // Get the base64 part
+            let imageData = canvas.toDataURL('image/png').split(',')[1];
             photo.setAttribute('src', 'data:image/png;base64,' + imageData);
 
             sendImageToWebhook(imageData);
@@ -49,28 +61,25 @@
 
         // Fullscreen functionality
         fullscreenButton.addEventListener('click', function() {
-            if (video.requestFullscreen) {
-                video.requestFullscreen();
-            } else if (video.mozRequestFullScreen) { // Firefox
-                video.mozRequestFullScreen();
-            } else if (video.webkitRequestFullscreen) { // Chrome, Safari and Opera
-                video.webkitRequestFullscreen();
-            } else if (video.msRequestFullscreen) { // IE/Edge
-                video.msRequestFullscreen();
+            if (videoContainer.requestFullscreen) {
+                videoContainer.requestFullscreen();
+            } else if (videoContainer.mozRequestFullScreen) {
+                videoContainer.mozRequestFullScreen();
+            } else if (videoContainer.webkitRequestFullscreen) {
+                videoContainer.webkitRequestFullscreen();
+            } else if (videoContainer.msRequestFullscreen) {
+                videoContainer.msRequestFullscreen();
             }
         });
 
         // Function to convert base64 image to blob and send it to the webhook using FormData
         function sendImageToWebhook(base64Data) {
-            // Convert base64 to raw binary data held in a string
             let byteString = atob(base64Data);
-            // Write the bytes of the string to an ArrayBuffer
             let arrayBuffer = new ArrayBuffer(byteString.length);
             let uint8Array = new Uint8Array(arrayBuffer);
             for (let i = 0; i < byteString.length; i++) {
                 uint8Array[i] = byteString.charCodeAt(i);
             }
-            // Create a blob from the ArrayBuffer
             let blob = new Blob([uint8Array], {type: 'image/png'});
             
             let formData = new FormData();
