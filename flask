@@ -1,0 +1,168 @@
+import subprocess
+from flask import Flask, render_template
+from flask_socketio import SocketIO
+from google.cloud import storage
+import base64
+from datetime import datetime, timedelta
+import binascii
+import requests
+from openai import OpenAI
+import os
+
+app = Flask(__name__)
+socketio = SocketIO(app, cors_allowed_origins="*")
+
+bucket_name = 'shelley_photos'  # Replace with your bucket name
+output_directory = 'Output'  # Directory in the bucket to store the generated image
+image_filename = 'generated_image.webp'  # Filename for the generated image
+
+@app.route('/')
+def index():
+    return render_template('index.html')  # Ensure you have an index.html template
+
+def generate_signed_url(bucket_name, blob_name, expiration=timedelta(minutes=15)):
+    """Generates a v4 signed URL for accessing a blob."""
+    storage_client = storage.Client()
+    bucket = storage_client.bucket(bucket_name)
+    blob = bucket.blob(blob_name)
+
+    signed_url = blob.generate_signed_url(expiration=expiration, version="v4")
+    return signed_url
+
+def call_apis_and_generate_image(astica_key, image_url, rapidapi_key):
+    try:
+        face_detection_response = requests.post(
+            "https://ivladmin-face-detection.p.rapidapi.com/faceSearch/detectFaces",
+            data={'objecturl': image_url},
+            headers={
+                "content-type": "application/x-www-form-urlencoded",
+                "X-RapidAPI-Key": rapidapi_key,
+                "X-RapidAPI-Host": "ivladmin-face-detection.p.rapidapi.com"
+            }
+        ).json()
+        print(f"Face detection response: {face_detection_response}")
+    except requests.exceptions.RequestException as e:
+        print(f"Error calling face detection API: {e}")
+        raise
+
+    try:
+        astica_response = requests.post(
+            'https://vision.astica.ai/describe',
+            json={
+                'tkn': astica_key,
+                'modelVersion': '2.1_full',
+                'visionParams': 'gpt_detailed,describe,faces',
+                'gpt_prompt': "Describe the head, race, eyes & face in detail to allow a GPT to recreate skull and facial muscle.",
+                'input': image_url,
+            },
+            headers={'Content-Type': 'application/json'}
+        ).json()
+        print(f"Astica response: {astica_response}")
+    except requests.exceptions.RequestException as e:
+        print(f"Error calling Astica API: {e}")
+        raise
+
+    prompt = f"Facial landmark data and descriptive date about the face: {face_detection_response}, Astica data: {astica_response}"
+    return prompt
+
+def generate_complete_prompt(astica_key, image_url, rapidapi_key):
+    dynamic_prompt = call_apis_and_generate_image(astica_key, image_url, rapidapi_key)
+    instructions = "Describe the face you have details on in the prose style of author Mary Shelley. "
+    complete_prompt = instructions + dynamic_prompt
+    
+    try:
+        client = OpenAI()
+        response = client.chat.completions.create(
+            model='gpt-4-0125-preview',
+            messages=[
+                {"role": "system", "content": "Frankenstein Author Mary Shelley"},
+                {"role": "user", "content": complete_prompt}
+            ],
+            max_tokens=250,
+        )
+        
+        full_response = response.choices[0].message.content
+        print(f"OpenAI response: {full_response}")
+        return full_response
+    except Exception as e:
+        print(f"Error calling OpenAI API: {e}")
+        raise
+
+def generate_image(prompt):
+    if len(prompt) < 10:  # Check if the prompt is too short
+        print("Prompt is too short. Skipping image generation.")
+        return None
+
+    base_image_path = os.path.expanduser("~/Final/head.jpg")
+    response = requests.post(
+        f"https://api.stability.ai/v2beta/stable-image/generate/core",
+        headers={
+            "authorization": f"Bearer sk-UBWPWO3caiHPmizVGBSL1oQVGtIFPbe1RZJ8JkylwCwZfOH8",
+            "accept": "image/*"
+        },
+        files={
+            "image": base_image_path
+        },
+        data={
+            "prompt": prompt,
+            "output_format": "webp",
+            "negative_prompt": "No background except black, No background scenery, objects, patterns, or textures. No other people, animals, or figures. No hats, glasses, earrings, or visible clothing above the shoulders. No digital artifacts, blurring, or distortion. No harsh shadows on the face, no overexposed lighting. Background must be pure black without any colors."
+        },
+    )
+
+    if response.status_code == 200:
+        return response.content
+    else:
+        raise Exception(str(response.json()))
+
+def upload_image_to_storage(image_data):
+    client = storage.Client()
+    bucket = client.bucket(bucket_name)
+    blob = bucket.blob(f"{output_directory}/{image_filename}")
+    blob.upload_from_string(image_data, content_type='image/webp')
+    print(f'Image uploaded: {output_directory}/{image_filename}')
+
+@socketio.on('connect')
+def handle_connect():
+    print('Client connected')
+
+@socketio.on('disconnect')
+def handle_disconnect():
+    print('Client disconnected')
+
+@socketio.on('image')
+def handle_image(data):
+    try:
+        image_data = base64.b64decode(data['imageData'])
+        filename = f"raw_photos/image_{datetime.now().strftime('%Y%m%d%H%M%S')}.png"
+        
+        client = storage.Client()
+        bucket = client.bucket(bucket_name)
+        blob = bucket.blob(filename)
+        blob.upload_from_string(image_data, content_type='image/png')
+        
+        signed_url = generate_signed_url(bucket_name, filename)
+        print(f'Image uploaded: {filename}')
+        
+        astica_key = 'F7C51C17-7085-471E-BACF-5E0C72E62E15FB9C938F-B250-462B-9935-9391D6EEF16E'
+        rapidapi_key = 'c8026097d9msh012eea28002f6d4p12c7ddjsn45f3cac68c2a'
+        gpt_response = generate_complete_prompt(astica_key, signed_url, rapidapi_key)
+        
+        socketio.emit('gpt_response', gpt_response)
+
+        # Generate image using Stability AI API
+        image_data = generate_image(gpt_response)
+        
+        if image_data is not None:
+            # Upload the generated image to Google Cloud Storage
+            upload_image_to_storage(image_data)
+        
+    except binascii.Error as e:
+        print(f"Error decoding base64 image data: {e}")
+        socketio.emit('error', {'message': 'Invalid image data.'})
+    except Exception as e:
+        print(f"Error processing image: {e}")
+        socketio.emit('error', {'message': 'Failed to process image.'})
+
+if __name__ == '__main__':
+    socketio.run(app, host='0.0.0.0', debug=True)
