@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Frame Image Refresh</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+        }
+        img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+    <img id="myImage" src="https://storage.googleapis.com/shelley_photos/output/latest_output.webp" alt="Full Frame Image">
+
+    <script>
+        function refreshImage() {
+            var image = document.getElementById("myImage");
+            image.src = "https://storage.googleapis.com/shelley_photos/output/latest_output.webp?t=" + new Date().getTime();
+        }
+        setInterval(refreshImage, 5000);
+    </script>
+</body>
+</html>
