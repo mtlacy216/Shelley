@@ -1,165 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Camera Access</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Frame Image Refresh</title>
     <style>
-        body, html {
+        body {
             margin: 0;
             padding: 0;
-            height: 100%;
-            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
         }
-        #videoContainer {
-            width: 25%;
-            height: 25%;
-            position: relative;
-            margin: auto;
-        }
-        #camera {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        #flash {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: white;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.2s ease-out;
-        }
-        #response {
-            margin-top: 20px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            min-height: 100px;
-            overflow-y: auto;
+        img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
         }
     </style>
 </head>
 <body>
-    <div id="videoContainer">
-        <video id="camera" autoplay></video>
-        <div id="flash"></div>
-    </div>
-    <button id="capture">Capture</button>
-    <button id="fullscreen">Toggle Fullscreen</button>
-    <button id="trigger-script">Trigger Script</button>
-    <canvas id="canvas" style="display:none;"></canvas>
-    <img id="photo" style="display:none;">
-    
-    <div id="response"></div>
+    <img id="myImage" src="https://storage.googleapis.com/shelley_photos/output/latest_output.webp" alt="Full Frame Image">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.4/socket.io.min.js"></script>
     <script>
-        let videoContainer = document.getElementById('videoContainer');
-        let video = document.getElementById('camera');
-        let flash = document.getElementById('flash');
-        let canvas = document.getElementById('canvas');
-        let photo = document.getElementById('photo');
-        let captureButton = document.getElementById('capture');
-        let fullscreenButton = document.getElementById('fullscreen');
-        let responseElement = document.getElementById('response');
-        let triggerScriptButton = document.getElementById('trigger-script');
-
-        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-            navigator.mediaDevices.getUserMedia({ video: true })
-                .then(function(stream) {
-                    video.srcObject = stream;
-                    video.play();
-                })
-                .catch(function(err) {
-                    console.log("An error occurred: " + err);
-                });
+        function refreshImage() {
+            var image = document.getElementById("myImage");
+            image.src = "https://storage.googleapis.com/shelley_photos/output/latest_output.webp?t=" + new Date().getTime();
         }
-
-        captureButton.addEventListener('click', function() {
-            triggerFlash();
-            capturePhoto();
-        });
-
-        function triggerFlash() {
-            flash.style.opacity = 1;
-            setTimeout(function() {
-                flash.style.opacity = 0;
-            }, 150);
-        }
-
-        function capturePhoto() {
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
-            canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
-            let imageData = canvas.toDataURL('image/png');
-            photo.setAttribute('src', imageData);
-            sendImageToFlask(imageData);
-        }
-
-        function sendImageToFlask(base64Data) {
-            socket.emit('image', {imageData: base64Data.split(',')[1]});
-        }
-
-        fullscreenButton.addEventListener('click', function() {
-            if (!document.fullscreenElement) {
-                videoContainer.requestFullscreen().catch(err => {
-                    alert('Error attempting to enable full-screen mode: ' + err.message + ' (' + err.name + ')');
-                });
-            } else {
-                document.exitFullscreen();
-            }
-        });
-
-        triggerScriptButton.addEventListener('click', function() {
-            socket.emit('trigger_script');
-        });
-
-        // Connect to the WebSocket
-        const socket = io('http://localhost:5000');
-
-        socket.on('connect', function() {
-            console.log('WebSocket connected');
-        });
-
-        socket.on('disconnect', function() {
-            console.log('WebSocket disconnected');
-        });
-
-        let responseTimeout;
-
-        socket.on('gpt_response', function(response) {
-            console.log('Received gpt_response event:', response);
-            let index = 0;
-            responseElement.innerHTML = '';
-
-            let interval = setInterval(function() {
-                if (index < response.length) {
-                    responseElement.innerHTML += response[index];
-                    index++;
-                } else {
-                    clearInterval(interval);
-                    clearTimeout(responseTimeout);
-                    responseTimeout = setTimeout(function() {
-                        responseElement.innerHTML = '';
-                    }, 60000); // Reset the response after 1 minute (60000 milliseconds)
-                }
-            }, 50);
-        });
-
-        socket.on('script_response', function(data) {
-            let imageUrl = data.image_url;
-            window.open(imageUrl, '_blank');
-        });
-
-        socket.on('script_error', function(errorMessage) {
-            console.error('Script error:', errorMessage);
-            alert('An error occurred while executing the script.');
-        });
-
-        socket.on('error', function(error) {
-            console.error('WebSocket error:', error);
-        });
+        setInterval(refreshImage, 5000);
     </script>
 </body>
 </html>
