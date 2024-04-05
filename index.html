@@ -9,13 +9,10 @@
             margin: 0;
             padding: 0;
             height: 100%;
-            overflow: hidden;
+            background-color: black;
         }
         
         #myImage {
-            position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
             object-fit: contain;
@@ -25,11 +22,25 @@
 <body>
     <img id="myImage" src="https://storage.googleapis.com/shelley_photos/output/latest_output.webp" alt="Full Screen Image">
     <script>
+        var image = document.getElementById("myImage");
+        
         function refreshImage() {
-            var image = document.getElementById("myImage");
             image.src = "https://storage.googleapis.com/shelley_photos/output/latest_output.webp?t=" + new Date().getTime();
         }
         
+        function toggleFullScreen() {
+            if (!document.fullscreenElement) {
+                if (document.documentElement.requestFullscreen) {
+                    document.documentElement.requestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+        
+        image.addEventListener("click", toggleFullScreen);
         setInterval(refreshImage, 5000);
     </script>
 </body>
