@@ -3,33 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Full Frame Image Refresh</title>
+    <title>Formørkelse \\ a retroreflective ritual</title>
     <style>
         body {
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             background-color: black;
+            color: #cc0000; /* Blood red color */
+            font-family: "Courier New", Courier, monospace;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            height: 100vh;
         }
-        img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
+
+        h1, h2, h3 {
+            text-align: center;
+            text-shadow: 0 0 8px #cc0000, 0 0 12px #cc0000, 0 0 16px #cc0000;
+            animation: pulse 2s infinite;
+            margin: 0;
+        }
+
+        h1 {
+            margin-top: 10px;
+        }
+
+        h3 {
+            margin-bottom: 40px;
+            font-weight: normal;
+        }
+
+        #console {
+            white-space: pre-wrap;
+            font-size: 20px;
+            text-shadow: 0 0 8px #cc0000, 0 0 12px #cc0000, 0 0 16px #cc0000;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                text-shadow: 0 0 8px #cc0000, 0 0 12px #cc0000, 0 0 16px #cc0000;
+            }
+            50% {
+                text-shadow: 0 0 16px #cc0000, 0 0 24px #cc0000, 0 0 32px #cc0000;
+            }
+        }
+
+        #console a {
+            color: #cc0000;
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
-    <img id="myImage" src="https://storage.googleapis.com/shelley_photos/output/latest_output.webp" alt="Full Frame Image">
+    <h2>The Shelley-Lovelace Engine Presents</h2>
+    <h1>Formørkelse</h1>
+    <h3>a retroreflective ritual</h3>
+    <div id="console"></div>
 
     <script>
-        function refreshImage() {
-            var image = document.getElementById("myImage");
-            image.src = "https://storage.googleapis.com/shelley_photos/output/latest_output.webp?t=" + new Date().getTime();
+        const text = `
+
+Enter a realm beyond words, where the language of the spirit speaks in silence.
+
+Guided by the Goddess and her shaman, you will journey into the shadows, confronting what lies hidden within.
+
+Here, you must bring your intentions silently, allowing your heart to be open and your mind to be still.
+
+As the flames rise and the bones cast their judgment, you will learn your lessons wordlessly, feeling their truth within.
+
+At the end, a token will be given to you—a tangible symbol of the wisdom revealed. This token is yours alone. Keep it close, do not show it to others, for it holds the essence of the lesson meant only for you.
+
+
+
+
+
+About the Technology
+
+Prior to the advent of modern greenscreen technology, technical constraints made it impossible to believably film with an artificial background. Rear projection, casting an image on a screen behind the actors, was the traditional method, but its images were usually faded and unbelievable. "Introvision" was invented, a patented technology that was the precursor of today's "Volume" on which shows like The Mandalorian are filmed. An incredibly bright "retroreflective" screen that sends the light directly back at its source is used to allow a dimmer projection light to be sent over the actors. By using a beam splitter (two-way mirror) screen, the projector and the camera are able to be at the exact same angle of reflection, giving the trick its convincing effect.
+
+Learn about 'Introvision': https://www.youtube.com/watch?v=S3-8uvY7Qtw
+
+Introvision Patent: https://patents.google.com/patent/US5061061A/en
+
+Music by Heilung: https://www.amplifiedhistorytour.com/`;
+
+        let index = 0;
+        const consoleElement = document.getElementById('console');
+
+        function typeCharacter() {
+            if (index < text.length) {
+                consoleElement.innerHTML += text[index] === '\n' ? '<br>' : text[index];
+                index++;
+                setTimeout(typeCharacter, 50); // Adjust the delay to control typing speed
+            }
         }
-        setInterval(refreshImage, 5000);
+
+        // Start the typing effect after a brief delay
+        setTimeout(typeCharacter, 500);
     </script>
 </body>
 </html>
