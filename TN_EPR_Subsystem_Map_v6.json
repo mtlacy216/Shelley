@@ -1,4 +1,3 @@
-
 {
   "nodes": [
     {
@@ -125,6 +124,41 @@
       "id": "Frank Niceley",
       "type": "Individual",
       "name": "Frank Niceley"
+    },
+    {
+      "id": "EPA (Region 4)",
+      "type": "Organization",
+      "name": "EPA (Region 4)"
+    },
+    {
+      "id": "Chatham House",
+      "type": "Organization",
+      "name": "Chatham House"
+    },
+    {
+      "id": "Resources for the Future (RFF)",
+      "type": "Organization",
+      "name": "Resources for the Future (RFF)"
+    },
+    {
+      "id": "Producer Responsibility Organization (PRO)",
+      "type": "Organization",
+      "name": "Producer Responsibility Organization (PRO)"
+    },
+    {
+      "id": "AMERIPEN",
+      "type": "Organization",
+      "name": "AMERIPEN"
+    },
+    {
+      "id": "Closed Loop Partners",
+      "type": "Organization",
+      "name": "Closed Loop Partners"
+    },
+    {
+      "id": "MBOLD",
+      "type": "Organization",
+      "name": "MBOLD"
     }
   ],
   "links": [
@@ -239,7 +273,62 @@
       "modality": "Contention",
       "significance": -1,
       "description": "Disagreement over EPR implications on businesses."
+    },
+    {
+      "source": "EPA (Region 4)",
+      "target": "Sustainable Waste Management",
+      "modality": "Implements",
+      "significance": 1,
+      "description": "EPA (Region 4) is responsible for promoting and enforcing environmental regulations, including those related to waste management."
+    },
+    {
+      "source": "Chatham House",
+      "target": "Circular Economy",
+      "modality": "Researches",
+      "significance": 1,
+      "description": "Chatham House conducts research and analysis on global affairs, including the circular economy."
+    },
+    {
+      "source": "Resources for the Future (RFF)",
+      "target": "Economic Growth of Tennessee",
+      "modality": "Analyzes",
+      "significance": 1,
+      "description": "RFF conducts economic analyses on environmental and resource issues, including their impact on economic growth."
+    },
+    {
+      "source": "Producer Responsibility Organization (PRO)",
+      "target": "Sustainable Waste Management",
+      "modality": "Implements",
+      "significance": 1,
+      "description": "The PRO is responsible for developing and implementing the EPR program for sustainable waste management."
+    },
+    {
+      "source": "Producer Responsibility Organization (PRO)",
+      "target": "Recycling Infrastructure",
+      "modality": "Develops",
+      "significance": 1,
+      "description": "The PRO plays a key role in developing and financing recycling infrastructure."
+    },
+    {
+      "source": "AMERIPEN",
+      "target": "Sustainable Waste Management",
+      "modality": "Advocates For",
+      "significance": 1,
+      "description": "AMERIPEN advocates for public policy solutions to enhance packaging sustainability."
+    },
+    {
+      "source": "Closed Loop Partners",
+      "target": "Circular Economy",
+      "modality": "Invests in",
+      "significance": 1,
+      "description": "Closed Loop Partners invests in companies and projects that promote the circular economy."
+    },
+    {
+      "source": "MBOLD",
+      "target": "Circular Economy",
+      "modality": "Promotes",
+      "significance": 1,
+      "description": "MBOLD is a coalition focused on advancing a circular economy, particularly for plastic film."
     }
   ]
 }
-```
