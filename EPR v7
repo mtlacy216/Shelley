@@ -84,6 +84,106 @@
       "id": "Frank Niceley",
       "type": "Individual",
       "description": "State Senator opposed to EPR legislation in Tennessee."
+    },
+    {
+      "id": "Closed Loop Partners",
+      "type": "Organization",
+      "description": "Investment firm dedicated to building a circular economy by providing catalytic capital."
+    },
+    {
+      "id": "AMERIPEN",
+      "type": "Organization",
+      "description": "American Institute for Packaging and the Environment, a U.S.-based non-profit that promotes packaging sustainability."
+    },
+    {
+      "id": "World Packaging Organisation (WPO)",
+      "type": "Organization",
+      "description": "Represents over 65 member associations globally that represent packaging training, peak professional bodies, and anything related to packaging materials."
+    },
+    {
+      "id": "OneSource Coalition",
+      "type": "Organization",
+      "description": "Advocating for Extended Producer Responsibility (EPR) as a solution for improving recycling systems."
+    },
+    {
+      "id": "American Beverage",
+      "type": "Organization",
+      "description": "Supports EPR and standardized recycling systems to increase the collection of bottles and cans for reuse."
+    },
+    {
+      "id": "Municipalities",
+      "type": "Organization",
+      "description": "Local governing bodies responsible for waste management within their jurisdictions."
+    },
+    {
+      "id": "Consumers",
+      "type": "Individual",
+      "description": "Individuals who purchase and dispose of packaged goods."
+    },
+    {
+      "id": "Packaging Manufacturers",
+      "type": "Organization",
+      "description": "Companies involved in producing packaging materials."
+    },
+    {
+      "id": "Retailers",
+      "type": "Organization",
+      "description": "Businesses selling packaged goods directly to consumers."
+    },
+    {
+      "id": "Waste Management Industry",
+      "type": "Organization",
+      "description": "Companies involved in collecting, sorting, processing, and disposing of waste materials, including recycling."
+    },
+    {
+      "id": "Producer Responsibility Organization (PRO)",
+      "type": "Organization",
+      "description": "Central organization responsible for managing EPR programs, setting recycling targets, and collecting fees from producers."
+    },
+    {
+      "id": "EPR Legislation",
+      "type": "Policy",
+      "description": "Laws and regulations implementing Extended Producer Responsibility frameworks."
+    },
+    {
+      "id": "Data Collection and Analysis",
+      "type": "Process",
+      "description": "Gathering and interpreting information related to waste management, recycling rates, and material flows."
+    },
+    {
+      "id": "Public Education and Outreach",
+      "type": "Process",
+      "description": "Educating consumers about recycling guidelines, material separation, and the benefits of EPR programs."
+    },
+    {
+      "id": "Material Recovery Facilities (MRFs)",
+      "type": "Infrastructure",
+      "description": "Facilities that sort and process recyclable materials collected from households and businesses."
+    },
+    {
+      "id": "Recycling and Reprocessing Plants",
+      "type": "Infrastructure",
+      "description": "Facilities that transform recyclable materials into new products or raw materials."
+    },
+    {
+      "id": "Landfills",
+      "type": "Infrastructure",
+      "description": "Sites for the disposal of waste materials that cannot be reused or recycled."
+    },
+    {
+      "id": "Design for Recycling",
+      "type": "Concept",
+      "description": "Designing packaging and products to facilitate their recyclability and reduce material complexity."
+    },
+    {
+      "id": "On-Pack Labeling",
+      "type": "Concept",
+      "description": "Providing clear and consistent information on packaging about its recyclability and proper disposal methods."
+    },
+    {
+      "id": "Eco-Modulation Fees",
+      "type": "Financial Mechanism",
+      "description": "Adjusting EPR fees based on the environmental performance and recyclability of packaging materials."
     }
   ],
   "edges": [
@@ -226,6 +326,223 @@
       "modality": "Opposes",
       "significance": -1,
       "description": "His opposition to EPR likely extends to opposing investments in Recycling Infrastructure."
+    },
+    {
+      "entity_from": "Closed Loop Partners",
+      "entity_to": "Circular Economy",
+      "modality": "Supports",
+      "significance": 1,
+      "description": "Closed Loop Partners is an investment firm specifically focused on funding projects that advance the circular economy."
+    },
+    {
+      "entity_from": "AMERIPEN",
+      "entity_to": "Circular Economy",
+      "modality": "Supports",
+      "significance": 1,
+      "description": "AMERIPEN, as an organization promoting packaging sustainability, aligns with the goals of a circular economy."
+    },
+    {
+      "entity_from": "World Packaging Organisation (WPO)",
+      "entity_to": "Circular Economy",
+      "modality": "Supports",
+      "significance": 1,
+      "description": "The WPO advocates for circular packaging design and aims to harmonize international standards for recycling, aligning with the principles of a circular economy."
+    },
+    {
+      "entity_from": "OneSource Coalition",
+      "entity_to": "EPR Legislation",
+      "modality": "Supports",
+      "significance": 1,
+      "description": "The OneSource Coalition actively promotes Extended Producer Responsibility (EPR) as a policy solution."
+    },
+    {
+      "entity_from": "American Beverage",
+      "entity_to": "EPR Legislation",
+      "modality": "Supports",
+      "significance": 1,
+      "description": "American Beverage sees EPR as a means to increase recycling rates and supports its implementation."
+    },
+    {
+      "entity_from": "Municipalities",
+      "entity_to": "Waste Management Industry",
+      "modality": "Collaborates With",
+      "significance": 1,
+      "description": "Municipalities often work with waste management companies to handle the collection and processing of waste, including recycling."
+    },
+    {
+      "entity_from": "Municipalities",
+      "entity_to": "Recycling Infrastructure",
+      "modality": "Manages",
+      "significance": 1,
+      "description": "Local governments often have a role in managing and developing recycling infrastructure within their jurisdictions."
+    },
+    {
+      "entity_from": "Consumers",
+      "entity_to": "Waste Reduction",
+      "modality": "Contributes To",
+      "significance": 1,
+      "description": "Consumer choices and behaviors, such as reducing consumption and recycling properly, directly impact waste reduction efforts."
+    },
+    {
+      "entity_from": "Consumers",
+      "entity_to": "Recycling Infrastructure",
+      "modality": "Interacts With",
+      "significance": 1,
+      "description": "Consumers interact with recycling infrastructure by using curbside bins, drop-off centers, and participating in deposit return schemes."
+    },
+    {
+      "entity_from": "Packaging Manufacturers",
+      "entity_to": "Design for Recycling",
+      "modality": "Influences",
+      "significance": 1,
+      "description": "Packaging manufacturers have a significant influence on the recyclability of packaging through their material choices and design decisions."
+    },
+    {
+      "entity_from": "Retailers",
+      "entity_to": "Packaging Manufacturers",
+      "modality": "Influences",
+      "significance": 1,
+      "description": "Retailers can influence packaging manufacturers by setting requirements and preferences for packaging materials and recyclability."
+    },
+    {
+      "entity_from": "Waste Management Industry",
+      "entity_to": "Material Recovery Facilities (MRFs)",
+      "modality": "Operates",
+      "significance": 1,
+      "description": "Waste management companies often operate Material Recovery Facilities (MRFs) to sort and process recyclable materials."
+    },
+    {
+      "entity_from": "Waste Management Industry",
+      "entity_to": "Recycling and Reprocessing Plants",
+      "modality": "Interacts With",
+      "significance": 1,
+      "description": "The waste management industry interacts with recycling and reprocessing plants by supplying them with sorted recyclable materials."
+    },
+    {
+      "entity_from": "Waste Management Industry",
+      "entity_to": "Landfills",
+      "modality": "Manages",
+      "significance": 1,
+      "description": "Waste management companies often manage and operate landfills for the disposal of non-recyclable waste."
+    },
+    {
+      "entity_from": "Producer Responsibility Organization (PRO)",
+      "entity_to": "EPR Legislation",
+      "modality": "Implements",
+      "significance": 1,
+      "description": "PROs are created to implement and manage EPR programs within the framework of EPR legislation."
+    },
+    {
+      "entity_from": "Producer Responsibility Organization (PRO)",
+      "entity_to": "Packaging Manufacturers",
+      "modality": "Collects Fees From",
+      "significance": 1,
+      "description": "PROs collect fees from packaging manufacturers based on the amount and type of packaging they produce, which funds the EPR program."
+    },
+    {
+      "entity_from": "Producer Responsibility Organization (PRO)",
+      "entity_to": "Waste Management Industry",
+      "modality": "Funds",
+      "significance": 1,
+      "description": "The fees collected by PROs are used to fund the collection, sorting, and processing of packaging waste managed by the waste management industry."
+    },
+    {
+      "entity_from": "EPR Legislation",
+      "entity_to": "Waste Reduction",
+      "modality": "Aims to Achieve",
+      "significance": 1,
+      "description": "The primary goal of EPR legislation is to reduce waste by shifting responsibility to producers and incentivizing more sustainable packaging choices."
+    },
+    {
+      "entity_from": "EPR Legislation",
+      "entity_to": "Recycling Infrastructure",
+      "modality": "Supports",
+      "significance": 1,
+      "description": "EPR legislation often includes provisions for funding and developing improved recycling infrastructure to support its objectives."
+    },
+    {
+      "entity_from": "Data Collection and Analysis",
+      "entity_to": "EPR Legislation",
+      "modality": "Informs",
+      "significance": 1,
+      "description": "Accurate data on waste generation, recycling rates, and material flows is crucial for informing the design and implementation of effective EPR legislation."
+    },
+    {
+      "entity_from": "Data Collection and Analysis",
+      "entity_to": "Producer Responsibility Organization (PRO)",
+      "modality": "Guides",
+      "significance": 1,
+      "description": "PROs rely on data to track progress, set targets, and adjust EPR programs to optimize their effectiveness."
+    },
+    {
+      "entity_from": "Public Education and Outreach",
+      "entity_to": "Consumers",
+      "modality": "Targets",
+      "significance": 1,
+      "description": "Public education campaigns are essential for informing consumers about EPR programs, recycling guidelines, and encouraging responsible waste disposal practices."
+    },
+    {
+      "entity_from": "Material Recovery Facilities (MRFs)",
+      "entity_to": "Recycling Infrastructure",
+      "modality": "Part Of",
+      "significance": 1,
+      "description": "MRFs are a crucial component of recycling infrastructure, responsible for sorting and processing collected recyclable materials."
+    },
+    {
+      "entity_from": "Recycling and Reprocessing Plants",
+      "entity_to": "Circular Economy",
+      "modality": "Enables",
+      "significance": 1,
+      "description": "Recycling and reprocessing plants play a vital role in closing the loop by transforming recyclable materials into new products or raw materials."
+    },
+    {
+      "entity_from": "Landfills",
+      "entity_to": "Environmental Sustainability of Tennessee",
+      "modality": "Impacts",
+      "significance": -1,
+      "description": "Landfills have negative impacts on the environment due to methane emissions, groundwater contamination, and land use, making their reduction a key aspect of environmental sustainability."
+    },
+    {
+      "entity_from": "Design for Recycling",
+      "entity_to": "Recycling Infrastructure",
+      "modality": "Optimizes",
+      "significance": 1,
+      "description": "Designing packaging for recyclability makes it easier for recycling infrastructure to effectively sort, process, and reintegrate materials back into the circular economy."
+    },
+    {
+      "entity_from": "On-Pack Labeling",
+      "entity_to": "Consumers",
+      "modality": "Informs",
+      "significance": 1,
+      "description": "Clear and consistent on-pack labeling provides consumers with the necessary information to make informed decisions about recycling and proper disposal."
+    },
+    {
+      "entity_from": "Eco-Modulation Fees",
+      "entity_to": "Packaging Manufacturers",
+      "modality": "Incentivizes",
+      "significance": 1,
+      "description": "Eco-modulation fees, by adjusting costs based on recyclability, incentivize packaging manufacturers to design more sustainable and easily recyclable packaging."
+    },
+    {
+      "entity_from": "Flexible Packaging Association",
+      "entity_to": "EPR Legislation",
+      "modality": "May Support or Oppose",
+      "significance": 0,
+      "description": "The Flexible Packaging Association's stance on EPR legislation is nuanced. While they support sustainability, they may oppose specific regulations they deem overly burdensome or detrimental to the industry."
+    },
+    {
+      "entity_from": "Tennessee Chamber of Commerce",
+      "entity_to": "EPR Legislation",
+      "modality": "May Support or Oppose",
+      "significance": 0,
+      "description": "The Tennessee Chamber of Commerce's stance on EPR is likely tied to its potential impact on business competitiveness. They might support EPR if it aligns with business interests or oppose it if they perceive it as burdensome or detrimental to economic growth."
+    },
+    {
+      "entity_from": "Tennessee Manufacturers Association",
+      "entity_to": "EPR Legislation",
+      "modality": "May Support or Oppose",
+      "significance": 0,
+      "description": "The Tennessee Manufacturers Association's view on EPR is likely influenced by its impact on manufacturing costs and competitiveness. They may support EPR if it benefits the industry or oppose it if they view it as negatively impacting manufacturing operations in Tennessee."
     }
   ]
 }
