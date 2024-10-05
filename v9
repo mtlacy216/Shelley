@@ -33,42 +33,17 @@
     {
       "id": "Tennessee Environmental Council",
       "type": "Organization",
-      "purpose": "Promote environmental protection, advocate for sustainable policies, engage in community outreach"
+      "purpose": "Corporate accountability, job creation through recycling, promote environmental justice"
     },
     {
       "id": "Sierra Club - Tennessee Chapter",
       "type": "Organization",
-      "purpose": "Advocate for environmental conservation, promote clean energy, address climate change"
+      "purpose": "Reduce plastic waste, advocate EPR, foster environmental justice, oppose corporate overreach"
     },
     {
       "id": "National Association of Manufacturers (NAM)",
       "type": "Organization",
-      "purpose": "Lobby for manufacturing interests, oppose regulations, promote economic growth"
-    },
-    {
-      "id": "American Beverage Association",
-      "type": "Organization",
-      "purpose": "Represent beverage industry interests, support EPR for recycling infrastructure, promote circular economy"
-    },
-    {
-      "id": "Coca-Cola",
-      "type": "Organization",
-      "purpose": "Maximize profits, maintain market share, manage regulatory compliance"
-    },
-    {
-      "id": "PepsiCo",
-      "type": "Organization",
-      "purpose": "Balance profit with sustainability, invest in recycling infrastructure, improve brand image"
-    },
-    {
-      "id": "Nestle",
-      "type": "Organization",
-      "purpose": "Align business with sustainability, invest in recyclable packaging, engage in EPR programs"
-    },
-    {
-      "id": "Walmart",
-      "type": "Organization",
-      "purpose": "Offer low prices, optimize supply chain, manage sustainability initiatives"
+      "purpose": "Economic growth, limit regulatory burdens, prioritize shareholder value, national policy influence"
     },
     {
       "id": "OECD",
@@ -176,42 +151,27 @@
     {
       "id": "Community Well-being",
       "type": "Purpose Set",
-      "description": "Promote policies that enhance the health, safety, and well-being of communities."
+      "description": "Improve local community health, well-being, and environmental conditions through targeted policies."
     },
     {
       "id": "Recycling Infrastructure",
       "type": "Purpose Set",
-      "description": "Develop and improve infrastructure for efficient and effective recycling processes."
-    },
-    {
-      "id": "Bill Lee",
-      "type": "Individual",
-      "purpose": "Governor of Tennessee, supports business interests, cautious approach to EPR."
-    },
-    {
-      "id": "Bradley Jackson",
-      "type": "Individual",
-      "purpose": "President and CEO of Tennessee Chamber of Commerce, advocates for a pro-business environment, seeks to minimize regulations."
-    },
-    {
-      "id": "Amy Martin",
-      "type": "Individual",
-      "purpose": "Director of Government Affairs at Coca-Cola, supports national EPR frameworks but resists state-level mandates."
-    },
-    {
-      "id": "Steve Cohen",
-      "type": "Individual",
-      "purpose": "U.S. Representative (TN-9), supports the Infrastructure Investment and Jobs Act and its funding for recycling infrastructure."
+      "description": "Enhance recycling infrastructure to support waste reduction and resource recovery efforts."
     },
     {
       "id": "Tennessee State Senate",
+      "type": "Organization",
+      "purpose": "Legislate and represent state interests, economic and regulatory impact considerations."
+    },
+    {
+      "id": "Tennessee House of Representatives",
       "type": "Organization",
       "purpose": "Legislate and represent state interests, focus on business impact."
     },
     {
       "id": "Frank Niceley",
       "type": "Individual",
-      "purpose": "Tennessee State Senator, concerns over EPR's economic impact, opposes increased regulatory burden on businesses."
+      "purpose": "Concerns over EPR’s economic impact, opposes increased regulatory burden on businesses."
     },
     {
       "id": "Jack Johnson",
@@ -219,26 +179,45 @@
       "purpose": "Opposes EPR; advocates for limited regulation and business-friendly policies."
     },
     {
-      "id": "Tennessee House of Representatives",
+      "id": "Amazon",
       "type": "Organization",
-      "purpose": "Represent constituents, legislate on state matters, consider business implications of policies."
+      "purpose": "E-commerce operations, potentially impacted by EPR due to branded product sales and additional packaging."
+    },
+    {
+      "id": "Unilever",
+      "type": "Organization",
+      "purpose": "Consumer goods company, likely supports EPR, aligning with the Sustainable Food Policy Alliance."
     }
   ],
   "edges": [
     {
       "entity_from": "Tennessee Chamber of Commerce",
       "entity_to": "Tennessee Manufacturers Association",
-      "modality": "Social Connectivity",
+      "modality": "Collaborative Dynamics",
       "healthy_unhealthy": "Healthy",
-      "health_term": "Shared Interests",
-      "subtype": "Business Advocacy",
+      "health_term": "Cooperation",
+      "subtype": "Economic Alignment",
       "vector": "Bidirectional",
-      "significance": "1: Joint lobbying efforts on economic and regulatory issues",
+      "significance": "Shared interest in business-friendly policies",
       "related_purpose_nodes": [
-        "Economic Growth of Tennessee",
-        "Business Competitiveness"
+        "Economic Growth of Tennessee"
       ],
-      "related_system": "Tennessee Business Lobbying Network"
+      "related_system": "Tennessee EPR System"
+    },
+    {
+      "entity_from": "Tennessee Chamber of Commerce",
+      "entity_to": "National Association of Manufacturers (NAM)",
+      "modality": "Power Relations",
+      "healthy_unhealthy": "Healthy",
+      "health_term": "Strategic Influence",
+      "subtype": "Policy Alignment",
+      "vector": "A to B",
+      "significance": "Tennessee Chamber draws policy support from NAM",
+      "related_purpose_nodes": [
+        "Business Competitiveness",
+        "Shareholder Value"
+      ],
+      "related_system": "National Business Policy Network"
     },
     {
       "entity_from": "Tennessee Chamber of Commerce",
@@ -248,7 +227,7 @@
       "health_term": "Contention",
       "subtype": "Policy Conflict",
       "vector": "Bidirectional",
-      "significance": "-1: Disagreement over EPR implications on business",
+      "significance": "Disagreement over EPR implications on business",
       "related_purpose_nodes": [
         "Public Health and Environmental Justice",
         "Business Competitiveness"
@@ -263,7 +242,7 @@
       "health_term": "Alignment",
       "subtype": "Shared Environmental Goals",
       "vector": "Bidirectional",
-      "significance": "1: Mutual support for circular economy initiatives",
+      "significance": "Mutual support for circular economy initiatives",
       "related_purpose_nodes": [
         "Circular Economy",
         "Environmental Sustainability"
@@ -278,7 +257,7 @@
       "health_term": "Community Engagement",
       "subtype": "Local Advocacy",
       "vector": "Bidirectional",
-      "significance": "1: Partnership on waste management and EPR policies",
+      "significance": "Partnership on waste management and EPR policies",
       "related_purpose_nodes": [
         "Community Well-being",
         "Public Health and Environmental Justice"
@@ -293,7 +272,7 @@
       "health_term": "Exchange",
       "subtype": "Economic Impact Analysis",
       "vector": "A to B",
-      "significance": "1: FPA relies on RFF research to justify opposition to EPR",
+      "significance": "FPA relies on RFF research to justify opposition to EPR",
       "related_purpose_nodes": [
         "Economic Growth of Tennessee",
         "Business Competitiveness"
@@ -308,7 +287,7 @@
       "health_term": "Cooperation",
       "subtype": "Environmental Policy Alignment",
       "vector": "Bidirectional",
-      "significance": "1: Shared goals in promoting recycling infrastructure",
+      "significance": "Shared goals in promoting recycling infrastructure",
       "related_purpose_nodes": [
         "Recycling Infrastructure",
         "Public Health and Environmental Justice"
@@ -323,7 +302,7 @@
       "health_term": "Collaboration",
       "subtype": "Advocacy for EPR",
       "vector": "Bidirectional",
-      "significance": "1: Aligned in environmental justice and reducing plastic waste",
+      "significance": "Aligned in environmental justice and reducing plastic waste",
       "related_purpose_nodes": [
         "Environmental Sustainability",
         "Public Health and Environmental Justice"
@@ -338,7 +317,7 @@
       "health_term": "Intellectual Cooperation",
       "subtype": "Policy Research Collaboration",
       "vector": "Bidirectional",
-      "significance": "1: Joint efforts to link waste management with global sustainability",
+      "significance": "Joint efforts to link waste management with global sustainability",
       "related_purpose_nodes": [
         "Circular Economy",
         "Environmental Sustainability"
@@ -353,7 +332,7 @@
       "health_term": "Leadership",
       "subtype": "Policy Advocacy",
       "vector": "A to B",
-      "significance": "1: PSI shapes EPR policy under Cassel's leadership",
+      "significance": "PSI shapes EPR policy under Cassel’s leadership",
       "related_purpose_nodes": [
         "Environmental Sustainability",
         "Circular Economy"
@@ -368,7 +347,7 @@
       "health_term": "Shared Advocacy",
       "subtype": "Environmental Justice",
       "vector": "Bidirectional",
-      "significance": "1: Aligned on goals for EPR and sustainability in Tennessee",
+      "significance": "Aligned on goals for EPR and sustainability in Tennessee",
       "related_purpose_nodes": [
         "Public Health and Environmental Justice",
         "Community Well-being"
@@ -383,7 +362,7 @@
       "health_term": "Exchange",
       "subtype": "Policy Advocacy",
       "vector": "A to B",
-      "significance": "1: Supports FPA to minimize regulatory impacts on packaging",
+      "significance": "Supports FPA to minimize regulatory impacts on packaging",
       "related_purpose_nodes": [
         "Shareholder Value",
         "Business Competitiveness"
@@ -398,7 +377,7 @@
       "health_term": "Strategic Alignment",
       "subtype": "Economic Development",
       "vector": "A to B",
-      "significance": "1: Orange v-Meme aligns with goals for economic success",
+      "significance": "Orange v-Meme aligns with goals for economic success",
       "related_purpose_nodes": [
         "Economic Growth of Tennessee",
         "Shareholder Value"
@@ -413,7 +392,7 @@
       "health_term": "Value Alignment",
       "subtype": "Environmental Advocacy",
       "vector": "A to B",
-      "significance": "1: Green v-Meme focuses on sustainable practices and equity",
+      "significance": "Green v-Meme focuses on sustainable practices and equity",
       "related_purpose_nodes": [
         "Environmental Sustainability",
         "Community Well-being"
@@ -428,7 +407,7 @@
       "health_term": "Systemic Integration",
       "subtype": "Resource Efficiency",
       "vector": "A to B",
-      "significance": "1: Yellow v-Meme emphasizes interconnected systemic approaches",
+      "significance": "Yellow v-Meme emphasizes interconnected systemic approaches",
       "related_purpose_nodes": [
         "Circular Economy",
         "Waste Management"
@@ -443,7 +422,7 @@
       "health_term": "Advocacy",
       "subtype": "Environmental Policy Support",
       "vector": "B to A",
-      "significance": "1: Supports EPR and aims to influence legislative outcomes through Senate",
+      "significance": "Supports EPR and aims to influence legislative outcomes through Senate",
       "related_purpose_nodes": [
         "Environmental Sustainability",
         "Public Health and Environmental Justice"
@@ -458,7 +437,7 @@
       "health_term": "Representation",
       "subtype": "Business Advocacy",
       "vector": "B to A",
-      "significance": "1: Advocates for rural business interests, opposes EPR",
+      "significance": "Advocates for rural business interests, opposes EPR",
       "related_purpose_nodes": [
         "Economic Growth of Tennessee",
         "Business Competitiveness"
@@ -473,7 +452,7 @@
       "health_term": "Influence",
       "subtype": "Regulatory Resistance",
       "vector": "B to A",
-      "significance": "1: Seeks to limit regulation impacting businesses, opposes EPR",
+      "significance": "Seeks to limit regulation impacting businesses, opposes EPR",
       "related_purpose_nodes": [
         "Shareholder Value",
         "Economic Growth of Tennessee"
@@ -488,7 +467,7 @@
       "health_term": "Advocacy",
       "subtype": "Economic Development",
       "vector": "A to B",
-      "significance": "1: Supports policies that protect economic interests of businesses in rural areas",
+      "significance": "Supports policies that protect economic interests of businesses in rural areas",
       "related_purpose_nodes": [
         "Economic Growth of Tennessee",
         "Business Competitiveness"
@@ -503,7 +482,7 @@
       "health_term": "Strategic Influence",
       "subtype": "Policy Advocacy",
       "vector": "A to B",
-      "significance": "1: Aligns with business interests to minimize regulatory impact",
+      "significance": "Aligns with business interests to minimize regulatory impact",
       "related_purpose_nodes": [
         "Shareholder Value",
         "Economic Growth of Tennessee"
@@ -518,7 +497,7 @@
       "health_term": "Economic Alignment",
       "subtype": "Policy Influence",
       "vector": "Bidirectional",
-      "significance": "1: Shares interests in policies that reduce regulatory burdens",
+      "significance": "Shares interests in policies that reduce regulatory burdens",
       "related_purpose_nodes": [
         "Business Competitiveness",
         "Economic Growth of Tennessee"
@@ -533,12 +512,40 @@
       "health_term": "Policy Collaboration",
       "subtype": "Legislative Alignment",
       "vector": "Bidirectional",
-      "significance": "1: Supports pro-business legislation alongside the Chamber",
+      "significance": "Supports pro-business legislation alongside the Chamber",
       "related_purpose_nodes": [
-        "Business Competitiveness",
-        "Economic Growth of Tennessee"
+        "Economic Growth of Tennessee",
+        "Business Competitiveness"
       ],
-      "related_system": "Tennessee Legislative System"
+      "related_system": "Tennessee EPR System"
+    },
+    {
+      "entity_from": "Tennessee Chamber of Commerce",
+      "entity_to": "Economic Growth of Tennessee",
+      "modality": "Supports",
+      "significance": 1,
+      "description": "The Tennessee Chamber of Commerce prioritizes policies that support economic growth in Tennessee."
+    },
+    {
+      "entity_from": "Tennessee Manufacturers Association",
+      "entity_to": "Economic Growth of Tennessee",
+      "modality": "Supports",
+      "significance": 1,
+      "description": "The Tennessee Manufacturers Association focuses on promoting the growth of the manufacturing sector, contributing to economic growth."
+    },
+    {
+      "entity_from": "Sustainable Food Policy Alliance",
+      "entity_to": "Unilever",
+      "modality": "Includes",
+      "significance": 1,
+      "description": "Unilever is a member of the Sustainable Food Policy Alliance and likely supports their stance on EPR."
+    },
+    {
+      "entity_from": "Amazon",
+      "entity_to": "Economic Growth of Tennessee",
+      "modality": "Potential Impact",
+      "significance": 0,
+      "description": "Amazon's e-commerce operations in Tennessee could be impacted by EPR regulations."
     }
   ]
 }
