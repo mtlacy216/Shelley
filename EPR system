@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TN EPR Subsystem Map</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body {
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+        .modal {
+            position: fixed;
+            right: 0;
+            top: 0;
+            width: 350px;
+            height: 100%;
+            background: #fff;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            overflow-y: auto;
+            display: none; /* Hidden by default */
+            z-index: 10;
+        }
+        .modal h1 {
+            font-size: 18px;
+            margin-top: 0;
+        }
+        .modal p, .modal ul {
+            font-size: 14px;
+        }
+        .label {
+            font-size: 12px;
+            fill: #000;
+            pointer-events: none;
+        }
+        /* Optional: Add some styling for the background */
+        svg {
+            background-color: #f9f9f9;
+        }
+        .separator {
+            stroke: #ccc;
+            stroke-width: 1;
+            stroke-dasharray: 4 2;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="modal" id="infoModal"></div>
+    <script>
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+
+        // Create SVG canvas with zoom and pan
+        const svg = d3.select("body")
+                      .append("svg")
+                      .attr("width", width)
+                      .attr("height", height)
+                      .call(d3.zoom().scaleExtent([0.1, 10]).on("zoom", (event) => {
+                          svgGroup.attr("transform", event.transform);
+                      }))
+                      .append("g");
+
+        const svgGroup = svg.append("g");
+
+        // Modal element
+        const modal = d3.select("#infoModal");
+
+        // Define vertical ranges for each node type with increased separation
+        const typeYRanges = {
+            "Super-Purpose Node": [0.05 * height, 0.12 * height],
+            "Purpose Set": [0.18 * height, 0.28 * height],
+            "Purpose": [0.35 * height, 0.45 * height],
+            "Organization": [0.55 * height, 0.75 * height],
+            "Individual": [0.82 * height, 0.92 * height]
+        };
+
+        // Define color scale for node types
+        const colorScale = d3.scaleOrdinal()
+            .domain([
+                "Super-Purpose Node",
+                "Purpose Set",
+                "Purpose",
+                "Organization",
+                "Individual"
+            ])
+            .range([
+                "#ff8c00", // Super-Purpose Node
+                "#32cd32", // Purpose Set
+                "#1e90ff", // Purpose
+                "#6a5acd", // Organization
+                "#d2691e"  // Individual
+            ]);
+
+        // Fetch JSON data from GitHub
+        d3.json("https://raw.githubusercontent.com/mtlacy216/Shelley/refs/heads/main/v14")
+            .then(function(data) {
+                // Process nodes and links
+                const nodes = data.nodes.map(d => Object.create(d));
+                const links = data.edges.map(d => Object.create(d));
+
+                // Build a map of nodes by id
+                const nodeById = new Map(nodes.map(d => [d.id, d]));
+
+                // Map edges to node objects and handle 'entity_from'/'entity_to' fields
+                links.forEach(link => {
+                    link.source = nodeById.get(link.entity_from);
+                    link.target = nodeById.get(link.entity_to);
+                });
+
+                // Handle super_purposes and purpose_sets by creating additional links
+                nodes.forEach(node => {
+                    // For super_purposes in Purpose Sets
+                    if (node.super_purposes) {
+                        node.super_purposes.forEach(superPurposeId => {
+                            const superPurposeNode = nodeById.get(superPurposeId);
+                            if (superPurposeNode) {
+                                links.push({
+                                    source: node,
+                                    target: superPurposeNode,
+                                    modality: "Defines",
+                                    significance: "Super-purpose of " + node.id
+                                });
+                            }
+                        });
+                    }
+                    // For purpose_sets in Purposes or other nodes
+                    if (node.purpose_sets) {
+                        node.purpose_sets.forEach(purposeSetId => {
+                            const purposeSetNode = nodeById.get(purposeSetId);
+                            if (purposeSetNode) {
+                                links.push({
+                                    source: node,
+                                    target: purposeSetNode,
+                                    modality: "Pursues",
+                                    significance: "Pursues purpose set " + purposeSetNode.id
+                                });
+                            }
+                        });
+                    }
+                    // For sub_purposes in Purpose Sets (if any)
+                    if (node.sub_purposes) {
+                        node.sub_purposes.forEach(subPurposeId => {
+                            const subPurposeNode = nodeById.get(subPurposeId);
+                            if (subPurposeNode) {
+                                links.push({
+                                    source: node,
+                                    target: subPurposeNode,
+                                    modality: "Sub-Purpose",
+                                    significance: "Sub-purpose of " + node.id
+                                });
+                            }
+                        });
+                    }
+                });
+
+                // Initialize simulation
+                const simulation = d3.forceSimulation(nodes)
+                    .force("link", d3.forceLink(links).id(d => d.id).distance(400).strength(0.7))
+                    .force("charge", d3.forceManyBody().strength(-20))
+                    .force("center", d3.forceCenter(width / 2, height / 2))
+                    .force("collide", d3.forceCollide().radius(d => {
+                        let baseRadius = 0;
+                        if (d.type === "Super-Purpose Node") baseRadius = 40;
+                        else if (d.type === "Purpose Set") baseRadius = 35;
+                        else if (d.type === "Purpose") baseRadius = 30;
+                        else if (d.type === "Organization") baseRadius = 25;
+                        else if (d.type === "Individual") baseRadius = 20;
+                        else baseRadius = 15;
+                        return baseRadius + 40; // Increase collision radius to add more space
+                    }).iterations(2))
+                    .on("tick", () => {
+                        forceClampY();
+
+                        nodeGroup.attr("transform", d => `translate(${d.x},${d.y})`);
+
+                        linkGroup
+                            .attr("x1", d => d.source.x)
+                            .attr("y1", d => d.source.y)
+                            .attr("x2", d => d.target.x)
+                            .attr("y2", d => d.target.y);
+                    });
+
+                // Custom force to constrain nodes within vertical ranges
+                function forceClampY() {
+                    nodes.forEach(node => {
+                        const [minY, maxY] = typeYRanges[node.type] || [0, height];
+                        node.y = Math.max(minY, Math.min(maxY, node.y));
+                    });
+                }
+
+                // Add horizontal separator lines between bands
+                const separatorValues = Object.values(typeYRanges)
+                    .map(range => range[1]); // Get the upper bound of each range
+
+                svgGroup.selectAll(".separator")
+                    .data(separatorValues)
+                    .enter()
+                    .append("line")
+                    .attr("class", "separator")
+                    .attr("x1", 0)
+                    .attr("y1", d => d)
+                    .attr("x2", width)
+                    .attr("y2", d => d)
+                    .style("stroke", "#ccc")
+                    .style("stroke-width", 1)
+                    .style("stroke-dasharray", "4 2")
+                    .style("opacity", 0.5);
+
+                // Add links first to ensure they are behind nodes
+                const linkGroup = svgGroup.append("g")
+                    .attr("class", "links")
+                    .selectAll("line")
+                    .data(links)
+                    .join("line")
+                    .attr("stroke-width", 1.5)
+                    .style("stroke", "#999")
+                    .style("opacity", 0.2)
+                    .style("cursor", "pointer")
+                    // Edge click event handler
+                    .on("click", (event, d) => {
+                        // Prevent click from propagating to the body
+                        event.stopPropagation();
+
+                        // Select or deselect the edge
+                        if (selectedEdge === d) {
+                            selectedEdge = null;
+                        } else {
+                            selectedEdge = d;
+                            selectedNode = null; // Deselect any selected node
+                        }
+
+                        updateStyles();
+                        if (selectedEdge) {
+                            // Show edge information in modal
+                            modal.style("display", "block")
+                                 .html(`
+                                    <h1>Connection between ${d.source.id} and ${d.target.id}</h1>
+                                    <p><strong>Modality:</strong> ${d.modality || 'N/A'}</p>
+                                    <p><strong>EPR Alignment:</strong> ${d.significance || 'N/A'}</p>
+                                    ${d.healthy_unhealthy ? `<p><strong>Health:</strong> ${d.healthy_unhealthy}</p>` : ''}
+                                    ${d.health_term ? `<p><strong>Health Term:</strong> ${d.health_term}</p>` : ''}
+                                    ${d.subtype ? `<p><strong>Subtype:</strong> ${d.subtype}</p>` : ''}
+                                    ${d.vector ? `<p><strong>Vector:</strong> ${d.vector}</p>` : ''}
+                                    ${d.related_system ? `<p><strong>Related System:</strong> ${d.related_system}</p>` : ''}
+                                 `);
+                        } else {
+                            modal.style("display", "none");
+                        }
+                    });
+
+                // Add nodes
+                const nodeGroup = svgGroup.append("g")
+                    .attr("class", "nodes")
+                    .selectAll("g")
+                    .data(nodes)
+                    .join("g")
+                    .call(d3.drag()
+                        .on("start", dragstarted)
+                        .on("drag", dragged)
+                        .on("end", dragended))
+                    .on("click", (event, d) => {
+                        // Prevent click from propagating to the body
+                        event.stopPropagation();
+
+                        if (selectedNode === d) {
+                            selectedNode = null;
+                        } else {
+                            selectedNode = d;
+                            selectedEdge = null; // Deselect any selected edge
+                        }
+
+                        updateStyles();
+                        if (selectedNode) {
+                            showModal(selectedNode);
+                        } else {
+                            modal.style("display", "none");
+                        }
+                    });
+
+                // Append circles to nodes
+                nodeGroup.append("circle")
+                    .attr("r", d => {
+                        if (d.type === "Super-Purpose Node") return 40;
+                        if (d.type === "Purpose Set") return 35;
+                        if (d.type === "Purpose") return 30;
+                        if (d.type === "Organization") return 25;
+                        if (d.type === "Individual") return 20;
+                        return 15;
+                    })
+                    .attr("fill", d => colorScale(d.type))
+                    .style("cursor", "pointer");
+
+                // Append labels to nodes
+                nodeGroup.append("text")
+                    .attr("class", "label")
+                    .attr("dx", 0)
+                    .attr("dy", d => {
+                        const radius = d.type === "Super-Purpose Node" ? 40 :
+                                       d.type === "Purpose Set" ? 35 :
+                                       d.type === "Purpose" ? 30 :
+                                       d.type === "Organization" ? 25 :
+                                       d.type === "Individual" ? 20 : 15;
+                        return -radius - 5;
+                    })
+                    .text(d => d.id)
+                    .style("text-anchor", "middle")
+                    .style("pointer-events", "none"); // Make labels not respond to pointer events
+
+                // Close modal when clicking outside nodes and links
+                d3.select("body").on("click", function() {
+                    selectedNode = null;
+                    selectedEdge = null;
+                    updateStyles();
+                    modal.style("display", "none");
+                });
+
+                // Track the selected node and edge
+                let selectedNode = null;
+                let selectedEdge = null;
+
+                // Function to update styles based on selection
+                function updateStyles() {
+                    if (selectedNode) {
+                        const { nodes: connectedNodes, edges: connectedEdges } = getConnectedNodesAndEdgesFromNode(selectedNode);
+
+                        // Highlight connected nodes
+                        nodeGroup.selectAll("circle")
+                            .style("stroke", d => connectedNodes.includes(d) ? "#f00" : "#000")
+                            .style("stroke-width", d => connectedNodes.includes(d) ? 2 : 1);
+
+                        // Highlight connected links
+                        linkGroup
+                            .style("stroke-width", d => connectedEdges.includes(d) ? 3 : 1.5)
+                            .style("opacity", d => connectedEdges.includes(d) ? 0.8 : 0.2);
+
+                        // Fade out labels of other nodes
+                        nodeGroup.selectAll("text")
+                            .style("opacity", d => connectedNodes.includes(d) ? 1 : 0.3);
+
+                    } else if (selectedEdge) {
+                        const { nodes: connectedNodes, edges: connectedEdges } = getConnectedNodesAndEdgesFromEdge(selectedEdge);
+
+                        // Highlight connected nodes
+                        nodeGroup.selectAll("circle")
+                            .style("stroke", d => connectedNodes.includes(d) ? "#f00" : "#000")
+                            .style("stroke-width", d => connectedNodes.includes(d) ? 2 : 1);
+
+                        // Highlight connected links
+                        linkGroup
+                            .style("stroke-width", d => connectedEdges.includes(d) ? 3 : 1.5)
+                            .style("opacity", d => connectedEdges.includes(d) ? 0.8 : 0.2);
+
+                        // Fade out labels of other nodes
+                        nodeGroup.selectAll("text")
+                            .style("opacity", d => connectedNodes.includes(d) ? 1 : 0.3);
+
+                    } else {
+                        // Reset node styles
+                        nodeGroup.selectAll("circle")
+                            .style("stroke", "#000")
+                            .style("stroke-width", 1);
+
+                        // Reset link styles
+                        linkGroup
+                            .style("stroke-width", 1.5)
+                            .style("opacity", 0.2);
+
+                        // Reset label opacities
+                        nodeGroup.selectAll("text")
+                            .style("opacity", 1);
+                    }
+                }
+
+                // Function to get connected nodes and edges from a node (up to 2 degrees)
+                function getConnectedNodesAndEdgesFromNode(node, maxDepth = 2) {
+                    const visitedNodes = new Set();
+                    const visitedEdges = new Set();
+                    const queue = [{ node: node, depth: 0 }];
+
+                    while (queue.length > 0) {
+                        const { node: currentNode, depth } = queue.shift();
+                        if (!visitedNodes.has(currentNode) && depth <= maxDepth) {
+                            visitedNodes.add(currentNode);
+
+                            links.forEach(link => {
+                                if (!visitedEdges.has(link)) {
+                                    if (link.source === currentNode || link.target === currentNode) {
+                                        visitedEdges.add(link);
+
+                                        const otherNode = link.source === currentNode ? link.target : link.source;
+
+                                        if (!visitedNodes.has(otherNode) && depth + 1 <= maxDepth) {
+                                            queue.push({ node: otherNode, depth: depth + 1 });
+                                        }
+                                    }
+                                }
+                            });
+                        }
+                    }
+
+                    return { nodes: Array.from(visitedNodes), edges: Array.from(visitedEdges) };
+                }
+
+                // Function to get connected nodes and edges from an edge (up to 2 degrees)
+                function getConnectedNodesAndEdgesFromEdge(edge, maxDepth = 2) {
+                    const visitedNodes = new Set();
+                    const visitedEdges = new Set();
+
+                    const queue = [{ edge: edge, depth: 0 }];
+
+                    while (queue.length > 0) {
+                        const { edge: currentEdge, depth } = queue.shift();
+
+                        if (!visitedEdges.has(currentEdge) && depth <= maxDepth) {
+                            visitedEdges.add(currentEdge);
+
+                            [currentEdge.source, currentEdge.target].forEach(node => {
+                                if (!visitedNodes.has(node)) {
+                                    visitedNodes.add(node);
+
+                                    if (depth + 1 <= maxDepth) {
+                                        links.forEach(link => {
+                                            if (!visitedEdges.has(link)) {
+                                                if (link.source === node || link.target === node) {
+                                                    queue.push({ edge: link, depth: depth + 1 });
+                                                }
+                                            }
+                                        });
+                                    }
+                                }
+                            });
+                        }
+                    }
+
+                    return { nodes: Array.from(visitedNodes), edges: Array.from(visitedEdges) };
+                }
+
+                // Function to show modal with node details
+                function showModal(d) {
+                    // Get related edges for relationships
+                    const relatedLinks = links.filter(link => link.source.id === d.id || link.target.id === d.id);
+                    const relationships = relatedLinks.map(link => {
+                        const otherNode = link.source.id === d.id ? link.target : link.source;
+                        return `<li>${otherNode.id} (${link.modality || 'Relation'}) - ${link.significance || ''}</li>`;
+                    }).join('');
+
+                    // Show node information in modal
+                    modal.style("display", "block")
+                         .html(`
+                            <h1>${d.id}</h1>
+                            <p><strong>Type:</strong> ${d.type}${d.subtype ? ' - ' + d.subtype : ''}</p>
+                            <p>${d.description || d.purpose || ''}</p>
+                            ${d.epr_support ? `<p><strong>EPR Support:</strong> ${d.epr_support}</p>` : ''}
+                            ${d.super_purposes ? `<p><strong>Super-Purposes:</strong> ${d.super_purposes.join(', ')}</p>` : ''}
+                            ${d.purpose_sets ? `<p><strong>Purpose Sets:</strong> ${d.purpose_sets.join(', ')}</p>` : ''}
+                            ${d.sub_purposes ? `<p><strong>Sub-Purposes:</strong> ${d.sub_purposes.join(', ')}</p>` : ''}
+                            <h3>Relationships:</h3>
+                            <ul>${relationships}</ul>
+                         `);
+                }
+
+                // Drag event handlers
+                function dragstarted(event, d) {
+                    if (!event.active) simulation.alphaTarget(0.3).restart();
+                    d.fx = d.x;
+                    d.fy = d.y;
+                }
+
+                function dragged(event, d) {
+                    d.fx = event.x;
+                    d.fy = event.y;
+                }
+
+                function dragended(event, d) {
+                    if (!event.active) simulation.alphaTarget(0);
+                    d.fx = null;
+                    d.fy = null;
+                }
+            })
+            .catch(function(error){
+                console.error('Error fetching the JSON data:', error);
+                alert('Failed to load data. Please check the console for more details.');
+            });
+    </script>
+</body>
+</html>
