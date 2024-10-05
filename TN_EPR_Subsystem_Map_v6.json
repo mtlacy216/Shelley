@@ -8,7 +8,8 @@
             "purpose_sets": [
                 "Economic Growth of Tennessee",
                 "Business Competitiveness",
-                "Shareholder Value"
+                "Shareholder Value",
+                "Manufacturing Sector Growth"
             ]
         },
         {
@@ -713,34 +714,6 @@
             "significance": "Aligns recycling infrastructure with Yellow super-purpose",
             "related_purpose_nodes": [],
             "related_system": ""
-        },
-
-        // Individual to Individual Relationships (if applicable)
-        // (No direct relationships provided in the initial data)
-
-        // Purpose to Organization Relationships (Already handled via organization.purpose_sets)
-        // Purpose Sets to Super-Purposes handled above
-
-        // Additional Relationships
-        // Linking Individuals to Organizations
-        {
-            "entity_from": "Heidi Campbell",
-            "entity_to": "Tennessee Environmental Council",
-            "modality": "Collaboration",
-            "healthy_unhealthy": "Healthy",
-            "health_term": "Policy Support",
-            "subtype": "Environmental Advocacy",
-            "vector": "A to B",
-            "significance": "Supports EPR initiatives through environmental advocacy",
-            "related_purpose_nodes": [
-                "Environmental Sustainability",
-                "Public Health and Environmental Justice",
-                "Community Well-being"
-            ],
-            "related_system": "Tennessee EPR System"
-        },
-
-        // Linking Individuals to Each Other (if applicable)
-        // (No direct relationships provided in the initial data)
+        }
     ]
 }
