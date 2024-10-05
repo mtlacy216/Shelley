@@ -1,0 +1,165 @@
+{
+  "nodes": [
+    {
+      "id": "Tennessee Chamber of Commerce",
+      "type": "Organization",
+      "purpose": "Economic growth, minimize regulatory impact, support business competitiveness, prioritize shareholder value",
+      "quadrant": "Exterior-Collective",
+      "proximityFactor": 0.8
+    },
+    {
+      "id": "Tennessee Manufacturers Association",
+      "type": "Organization",
+      "purpose": "Economic sustainability, job creation, manufacturing sector growth, prioritize shareholder value",
+      "quadrant": "Exterior-Collective",
+      "proximityFactor": 0.75
+    },
+    {
+      "id": "Flexible Packaging Association",
+      "type": "Organization",
+      "purpose": "Promote voluntary compliance, oppose strict EPR mandates, maintain operational autonomy",
+      "quadrant": "Exterior-Collective",
+      "proximityFactor": 0.6
+    },
+    {
+      "id": "Sustainable Food Policy Alliance",
+      "type": "Organization",
+      "purpose": "Align sustainability with business goals, support circular economy, contribute to brand reputation",
+      "quadrant": "Exterior-Collective",
+      "proximityFactor": 0.9
+    },
+    {
+      "id": "EPA (Region 4)",
+      "type": "Organization",
+      "purpose": "Enhance recycling infrastructure, protect public health, promote environmental justice",
+      "quadrant": "Exterior-Collective",
+      "proximityFactor": 0.7
+    },
+    {
+      "id": "Davidson County Solid Waste Board",
+      "type": "Organization",
+      "purpose": "Advocate Zero Waste, improve local environmental health, support EPR policies",
+      "quadrant": "Interior-Collective",
+      "proximityFactor": 0.8
+    },
+    {
+      "id": "Tennessee Environmental Council",
+      "type": "Organization",
+      "purpose": "Corporate accountability, job creation through recycling, promote environmental justice",
+      "quadrant": "Interior-Collective",
+      "proximityFactor": 0.85
+    },
+    {
+      "id": "Sierra Club - Tennessee Chapter",
+      "type": "Organization",
+      "purpose": "Reduce plastic waste, advocate EPR, foster environmental justice, oppose corporate overreach",
+      "quadrant": "Interior-Collective",
+      "proximityFactor": 0.75
+    },
+    {
+      "id": "National Association of Manufacturers (NAM)",
+      "type": "Organization",
+      "purpose": "Economic growth, limit regulatory burdens, prioritize shareholder value, national policy influence",
+      "quadrant": "Exterior-Collective",
+      "proximityFactor": 0.65
+    },
+    {
+      "id": "OECD",
+      "type": "Organization",
+      "purpose": "Promote recycling, support circular economy, drive international policy coherence",
+      "quadrant": "Exterior-Collective",
+      "proximityFactor": 0.9
+    },
+    {
+      "id": "Chatham House",
+      "type": "Think Tank",
+      "purpose": "Link waste management with climate action and sustainability, focus on policy research and international diplomacy",
+      "quadrant": "Interior-Collective",
+      "proximityFactor": 0.7
+    },
+    {
+      "id": "Resources for the Future (RFF)",
+      "type": "Think Tank",
+      "purpose": "Conduct economic impact assessments, explore EPR alternatives, emphasize public policy research",
+      "quadrant": "Interior-Collective",
+      "proximityFactor": 0.9
+    },
+    {
+      "id": "Product Stewardship Institute (PSI)",
+      "type": "Think Tank",
+      "purpose": "Develop effective EPR policies, promote waste reduction, support circular economy through research",
+      "quadrant": "Interior-Collective",
+      "proximityFactor": 0.6
+    },
+    {
+      "id": "Heidi Campbell",
+      "type": "Individual",
+      "purpose": "Support sustainable waste management through EPR, advocate for environmental justice and community well-being",
+      "quadrant": "Interior-Individual",
+      "proximityFactor": 0.8
+    },
+    {
+      "id": "Andrew Tavi",
+      "type": "Individual",
+      "purpose": "Minimize regulatory impact on Nissan, align business with sustainability, maintain shareholder interests",
+      "quadrant": "Exterior-Individual",
+      "proximityFactor": 0.7
+    },
+    {
+      "id": "Scott Cassel",
+      "type": "Individual",
+      "purpose": "Advocate well-designed EPR to support circular economy, lead public policy initiatives",
+      "quadrant": "Interior-Individual",
+      "proximityFactor": 0.85
+    },
+    {
+      "id": "Orange: Commercial Interests",
+      "type": "Super-Purpose Node",
+      "description": "Focus on economic success, achievement, and competitive advantage.",
+      "quadrant": "Exterior-Collective",
+      "proximityFactor": 0.6
+    },
+    {
+      "id": "Green: Equity and Environmental Interests",
+      "type": "Super-Purpose Node",
+      "description": "Emphasizes community well-being, environmental stewardship, and social equity.",
+      "quadrant": "Interior-Collective",
+      "proximityFactor": 0.7
+    },
+    {
+      "id": "Yellow: Systemic and Integral Interests",
+      "type": "Super-Purpose Node",
+      "description": "Prioritizes systemic sustainability, complex problem-solving, and interconnectedness.",
+      "quadrant": "Exterior-Individual",
+      "proximityFactor": 0.5
+    },
+    {
+      "id": "Frank Niceley",
+      "type": "Individual",
+      "purpose": "Concerns over EPR’s economic impact, opposes increased regulatory burden on businesses.",
+      "quadrant": "Exterior-Individual",
+      "proximityFactor": 0.75
+    },
+    {
+      "id": "Jack Johnson",
+      "type": "Individual",
+      "purpose": "Opposes EPR; advocates for limited regulation and business-friendly policies.",
+      "quadrant": "Exterior-Individual",
+      "proximityFactor": 0.8
+    },
+    {
+      "id": "Tennessee State Senate",
+      "type": "Organization",
+      "purpose": "Legislate and represent state interests, economic and regulatory impact considerations.",
+      "quadrant": "Exterior-Collective",
+      "proximityFactor": 0.7
+    },
+    {
+      "id": "Tennessee House of Representatives",
+      "type": "Organization",
+      "purpose": "Legislate and represent state interests, focus on business impact.",
+      "quadrant": "Exterior-Collective",
+      "proximityFactor": 0.8
+    }
+  ]
+}
