@@ -1,327 +1,185 @@
 {
     "nodes": [
-        // Super-Purpose Nodes
-        {
-            "id": "Orange (Modernist)",
-            "type": "Super-Purpose Node",
-            "description": "Focus on economic success, achievement, and competitive advantage.",
-            "purpose_sets": [
-                "Economic Growth of Tennessee",
-                "Business Competitiveness",
-                "Shareholder Value",
-                "Manufacturing Sector Growth"
-            ]
-        },
-        {
-            "id": "Green (Postmodern)",
-            "type": "Super-Purpose Node",
-            "description": "Emphasizes community well-being, environmental stewardship, and social equity.",
-            "purpose_sets": [
-                "Environmental Sustainability",
-                "Public Health and Environmental Justice",
-                "Community Well-being"
-            ]
-        },
-        {
-            "id": "Yellow (Systemic)",
-            "type": "Super-Purpose Node",
-            "description": "Prioritizes systemic sustainability, complex problem-solving, and interconnectedness.",
-            "purpose_sets": [
-                "Circular Economy",
-                "Environmental Sustainability",
-                "Waste Management",
-                "Recycling Infrastructure"
-            ]
-        },
-
-        // Purpose Sets
-        {
-            "id": "Economic Growth of Tennessee",
-            "type": "Purpose Set",
-            "description": "Support job creation, economic development, and business growth in TN.",
-            "super_purposes": ["Orange (Modernist)"]
-        },
-        {
-            "id": "Environmental Sustainability",
-            "type": "Purpose Set",
-            "description": "Promote sustainable practices, waste reduction, and resource efficiency.",
-            "super_purposes": ["Green (Postmodern)", "Yellow (Systemic)"]
-        },
-        {
-            "id": "Public Health and Environmental Justice",
-            "type": "Purpose Set",
-            "description": "Ensure policies benefit public health and address environmental justice concerns.",
-            "super_purposes": ["Green (Postmodern)"]
-        },
-        {
-            "id": "Circular Economy",
-            "type": "Purpose Set",
-            "description": "Support a circular economy through resource recovery, waste reduction, and sustainable business practices.",
-            "super_purposes": ["Yellow (Systemic)"]
-        },
-        {
-            "id": "Business Competitiveness",
-            "type": "Purpose Set",
-            "description": "Ensure that businesses operate with minimal regulatory burden and maximum market advantage.",
-            "super_purposes": ["Orange (Modernist)"]
-        },
-        {
-            "id": "Manufacturing Sector Growth",
-            "type": "Purpose Set",
-            "description": "Encourage the growth of the manufacturing sector and job creation within the state.",
-            "super_purposes": ["Orange (Modernist)"]
-        },
-        {
-            "id": "Shareholder Value",
-            "type": "Purpose Set",
-            "description": "Prioritize decisions that enhance financial returns and align with investor interests.",
-            "super_purposes": ["Orange (Modernist)"]
-        },
-        {
-            "id": "Waste Management",
-            "type": "Purpose Set",
-            "description": "Develop sustainable waste management practices to reduce landfill use and increase recycling.",
-            "super_purposes": ["Yellow (Systemic)"]
-        },
-        {
-            "id": "Community Well-being",
-            "type": "Purpose Set",
-            "description": "Improve local community health, well-being, and environmental conditions through targeted policies.",
-            "super_purposes": ["Green (Postmodern)"]
-        },
-        {
-            "id": "Recycling Infrastructure",
-            "type": "Purpose Set",
-            "description": "Enhance recycling infrastructure to support waste reduction and resource recovery efforts.",
-            "super_purposes": ["Yellow (Systemic)"]
-        },
-
-        // Organizations
         {
             "id": "Tennessee Chamber of Commerce",
             "type": "Organization",
-            "subtype": "Business Associations",
-            "purpose": "Economic growth, minimize regulatory impact, support business competitiveness, prioritize shareholder value",
-            "purpose_sets": [
-                "Economic Growth of Tennessee",
-                "Business Competitiveness",
-                "Shareholder Value"
-            ]
+            "purpose": "Economic growth, minimize regulatory impact, support business competitiveness, prioritize shareholder value"
         },
         {
             "id": "Tennessee Manufacturers Association",
             "type": "Organization",
-            "subtype": "Business Associations",
-            "purpose": "Economic sustainability, job creation, manufacturing sector growth, prioritize shareholder value",
-            "purpose_sets": [
-                "Economic Growth of Tennessee",
+            "purpose": "Economic sustainability, job creation, manufacturing sector growth, prioritize shareholder value"
+        },
+        {
+            "id": "Flexible Packaging Association",
+            "type": "Organization",
+            "purpose": "Promote voluntary compliance, oppose strict EPR mandates, maintain operational autonomy"
+        },
+        {
+            "id": "Sustainable Food Policy Alliance",
+            "type": "Organization",
+            "purpose": "Align sustainability with business goals, support circular economy, contribute to brand reputation"
+        },
+        {
+            "id": "EPA (Region 4)",
+            "type": "Organization",
+            "purpose": "Enhance recycling infrastructure, protect public health, promote environmental justice"
+        },
+        {
+            "id": "Davidson County Solid Waste Board",
+            "type": "Organization",
+            "purpose": "Advocate Zero Waste, improve local environmental health, support EPR policies"
+        },
+        {
+            "id": "Tennessee Environmental Council",
+            "type": "Organization",
+            "purpose": "Corporate accountability, job creation through recycling, promote environmental justice"
+        },
+        {
+            "id": "Sierra Club - Tennessee Chapter",
+            "type": "Organization",
+            "purpose": "Reduce plastic waste, advocate EPR, foster environmental justice, oppose corporate overreach"
+        },
+        {
+            "id": "National Association of Manufacturers (NAM)",
+            "type": "Organization",
+            "purpose": "Economic growth, limit regulatory burdens, prioritize shareholder value, national policy influence"
+        },
+        {
+            "id": "OECD",
+            "type": "Organization",
+            "purpose": "Promote recycling, support circular economy, drive international policy coherence"
+        },
+        {
+            "id": "Chatham House",
+            "type": "Think Tank",
+            "purpose": "Link waste management with climate action and sustainability, focus on policy research and international diplomacy"
+        },
+        {
+            "id": "Resources for the Future (RFF)",
+            "type": "Think Tank",
+            "purpose": "Conduct economic impact assessments, explore EPR alternatives, emphasize public policy research"
+        },
+        {
+            "id": "Product Stewardship Institute (PSI)",
+            "type": "Think Tank",
+            "purpose": "Develop effective EPR policies, promote waste reduction, support circular economy through research"
+        },
+        {
+            "id": "Heidi Campbell",
+            "type": "Individual",
+            "purpose": "Support sustainable waste management through EPR, advocate for environmental justice and community well-being"
+        },
+        {
+            "id": "Andrew Tavi",
+            "type": "Individual",
+            "purpose": "Minimize regulatory impact on Nissan, align business with sustainability, maintain shareholder interests"
+        },
+        {
+            "id": "Scott Cassel",
+            "type": "Individual",
+            "purpose": "Advocate well-designed EPR to support circular economy, lead public policy initiatives"
+        },
+        {
+            "id": "Orange (Modernist)",
+            "type": "Super-Purpose Node",
+            "description": "Focus on economic success, achievement, and competitive advantage."
+        },
+        {
+            "id": "Green (Postmodern)",
+            "type": "Super-Purpose Node",
+            "description": "Emphasizes community well-being, environmental stewardship, and social equity."
+        },
+        {
+            "id": "Yellow (Systemic)",
+            "type": "Super-Purpose Node",
+            "description": "Prioritizes systemic sustainability, complex problem-solving, and interconnectedness."
+        },
+        {
+            "id": "Economic Growth of Tennessee",
+            "type": "Purpose Set",
+            "description": "Support job creation, economic development, and business growth in TN.",
+            "sub_purposes": [
+                "Business Competitiveness",
                 "Manufacturing Sector Growth",
                 "Shareholder Value"
             ]
         },
         {
-            "id": "Flexible Packaging Association",
-            "type": "Organization",
-            "subtype": "Industry-Specific Groups",
-            "purpose": "Promote voluntary compliance, oppose strict EPR mandates, maintain operational autonomy",
-            "purpose_sets": [
-                "Business Competitiveness",
-                "Shareholder Value"
-            ]
-        },
-        {
-            "id": "Sustainable Food Policy Alliance",
-            "type": "Organization",
-            "subtype": "Environmental Organizations",
-            "purpose": "Align sustainability with business goals, support circular economy, contribute to brand reputation",
-            "purpose_sets": [
-                "Environmental Sustainability",
+            "id": "Environmental Sustainability",
+            "type": "Purpose Set",
+            "description": "Promote sustainable practices, waste reduction, and resource efficiency.",
+            "sub_purposes": [
+                "Waste Management",
                 "Circular Economy"
             ]
         },
         {
-            "id": "EPA (Region 4)",
-            "type": "Organization",
-            "subtype": "Government Agencies",
-            "purpose": "Enhance recycling infrastructure, protect public health, promote environmental justice",
-            "purpose_sets": [
+            "id": "Public Health and Environmental Justice",
+            "type": "Purpose Set",
+            "description": "Ensure policies benefit public health and address environmental justice concerns.",
+            "sub_purposes": [
                 "Recycling Infrastructure",
-                "Public Health and Environmental Justice"
-            ]
-        },
-        {
-            "id": "Davidson County Solid Waste Board",
-            "type": "Organization",
-            "subtype": "Government Agencies",
-            "purpose": "Advocate Zero Waste, improve local environmental health, support EPR policies",
-            "purpose_sets": [
-                "Waste Management",
-                "Public Health and Environmental Justice",
                 "Community Well-being"
             ]
         },
         {
-            "id": "Tennessee Environmental Council",
-            "type": "Organization",
-            "subtype": "Environmental Organizations",
-            "purpose": "Corporate accountability, job creation through recycling, promote environmental justice",
-            "purpose_sets": [
-                "Environmental Sustainability",
-                "Circular Economy",
-                "Public Health and Environmental Justice"
-            ]
+            "id": "Circular Economy",
+            "type": "Purpose",
+            "description": "Support a circular economy through resource recovery, waste reduction, and sustainable business practices."
         },
         {
-            "id": "Sierra Club - Tennessee Chapter",
-            "type": "Organization",
-            "subtype": "Environmental Organizations",
-            "purpose": "Reduce plastic waste, advocate EPR, foster environmental justice, oppose corporate overreach",
-            "purpose_sets": [
-                "Environmental Sustainability",
-                "Public Health and Environmental Justice"
-            ]
+            "id": "Business Competitiveness",
+            "type": "Purpose",
+            "description": "Ensure that businesses operate with minimal regulatory burden and maximum market advantage."
         },
         {
-            "id": "National Association of Manufacturers (NAM)",
-            "type": "Organization",
-            "subtype": "Business Associations",
-            "purpose": "Economic growth, limit regulatory burdens, prioritize shareholder value, national policy influence",
-            "purpose_sets": [
-                "Economic Growth of Tennessee",
-                "Business Competitiveness",
-                "Shareholder Value"
-            ]
+            "id": "Manufacturing Sector Growth",
+            "type": "Purpose",
+            "description": "Encourage the growth of the manufacturing sector and job creation within the state."
         },
         {
-            "id": "OECD",
-            "type": "Organization",
-            "subtype": "Think Tanks",
-            "purpose": "Promote recycling, support circular economy, drive international policy coherence",
-            "purpose_sets": [
-                "Circular Economy",
-                "Environmental Sustainability"
-            ]
+            "id": "Shareholder Value",
+            "type": "Purpose",
+            "description": "Prioritize decisions that enhance financial returns and align with investor interests."
         },
         {
-            "id": "Chatham House",
-            "type": "Organization",
-            "subtype": "Think Tanks",
-            "purpose": "Link waste management with climate action and sustainability, focus on policy research and international diplomacy",
-            "purpose_sets": [
-                "Circular Economy",
-                "Environmental Sustainability"
-            ]
+            "id": "Waste Management",
+            "type": "Purpose",
+            "description": "Develop sustainable waste management practices to reduce landfill use and increase recycling."
         },
         {
-            "id": "Resources for the Future (RFF)",
-            "type": "Organization",
-            "subtype": "Think Tanks",
-            "purpose": "Conduct economic impact assessments, explore EPR alternatives, emphasize public policy research",
-            "purpose_sets": [
-                "Economic Growth of Tennessee",
-                "Business Competitiveness"
-            ]
+            "id": "Community Well-being",
+            "type": "Purpose",
+            "description": "Improve local community health, well-being, and environmental conditions through targeted policies."
         },
         {
-            "id": "Product Stewardship Institute (PSI)",
-            "type": "Organization",
-            "subtype": "Think Tanks",
-            "purpose": "Develop effective EPR policies, promote waste reduction, support circular economy through research",
-            "purpose_sets": [
-                "Environmental Sustainability",
-                "Circular Economy"
-            ]
+            "id": "Recycling Infrastructure",
+            "type": "Purpose",
+            "description": "Enhance recycling infrastructure to support waste reduction and resource recovery efforts."
         },
         {
             "id": "Tennessee State Senate",
             "type": "Organization",
-            "subtype": "Government Agencies",
-            "purpose": "Legislate and represent state interests, economic and regulatory impact considerations.",
-            "purpose_sets": [
-                "Economic Growth of Tennessee",
-                "Public Health and Environmental Justice",
-                "Waste Management"
-            ]
+            "purpose": "Legislate and represent state interests, economic and regulatory impact considerations."
         },
         {
             "id": "Tennessee House of Representatives",
             "type": "Organization",
-            "subtype": "Government Agencies",
-            "purpose": "Legislate and represent state interests, focus on business impact.",
-            "purpose_sets": [
-                "Economic Growth of Tennessee",
-                "Business Competitiveness"
-            ]
-        },
-
-        // Individuals
-        {
-            "id": "Heidi Campbell",
-            "type": "Individual",
-            "purpose": "Support sustainable waste management through EPR, advocate for environmental justice and community well-being",
-            "organizations": [
-                "Tennessee State Senate",
-                "Tennessee Environmental Council"
-            ],
-            "purpose_sets": [
-                "Environmental Sustainability",
-                "Public Health and Environmental Justice",
-                "Community Well-being"
-            ]
-        },
-        {
-            "id": "Andrew Tavi",
-            "type": "Individual",
-            "purpose": "Minimize regulatory impact on Nissan, align business with sustainability, maintain shareholder interests",
-            "organizations": [
-                "Tennessee Chamber of Commerce",
-                "Flexible Packaging Association"
-            ],
-            "purpose_sets": [
-                "Business Competitiveness",
-                "Shareholder Value"
-            ]
-        },
-        {
-            "id": "Scott Cassel",
-            "type": "Individual",
-            "purpose": "Advocate well-designed EPR to support circular economy, lead public policy initiatives",
-            "organizations": [
-                "Product Stewardship Institute (PSI)"
-            ],
-            "purpose_sets": [
-                "Environmental Sustainability",
-                "Circular Economy"
-            ]
+            "purpose": "Legislate and represent state interests, focus on business impact."
         },
         {
             "id": "Frank Niceley",
             "type": "Individual",
-            "purpose": "Concerns over EPR’s economic impact, opposes increased regulatory burden on businesses.",
-            "organizations": [
-                "Tennessee State Senate"
-            ],
-            "purpose_sets": [
-                "Economic Growth of Tennessee",
-                "Business Competitiveness"
-            ]
+            "purpose": "Concerns over EPR’s economic impact, opposes increased regulatory burden on businesses."
         },
         {
             "id": "Jack Johnson",
             "type": "Individual",
-            "purpose": "Opposes EPR; advocates for limited regulation and business-friendly policies.",
-            "organizations": [
-                "Tennessee State Senate"
-            ],
-            "purpose_sets": [
-                "Shareholder Value",
-                "Economic Growth of Tennessee",
-                "Business Competitiveness"
-            ]
+            "purpose": "Opposes EPR; advocates for limited regulation and business-friendly policies."
         }
     ],
     "edges": [
-        // Organizational Relationships
         {
             "entity_from": "Tennessee Chamber of Commerce",
             "entity_to": "Tennessee Manufacturers Association",
@@ -332,9 +190,7 @@
             "vector": "Bidirectional",
             "significance": "Shared interest in business-friendly policies",
             "related_purpose_nodes": [
-                "Economic Growth of Tennessee",
-                "Business Competitiveness",
-                "Shareholder Value"
+                "Economic Growth of Tennessee"
             ],
             "related_system": "Tennessee EPR System"
         },
@@ -431,7 +287,7 @@
         {
             "entity_from": "Tennessee Environmental Council",
             "entity_to": "Sierra Club - Tennessee Chapter",
-            "modality": "Collaborative Dynamics",
+            "modality": "Social Connectivity",
             "healthy_unhealthy": "Healthy",
             "health_term": "Collaboration",
             "subtype": "Advocacy for EPR",
@@ -473,34 +329,16 @@
             ],
             "related_system": "EPR Policy Network"
         },
-
-        // Individual to Organization Relationships
         {
             "entity_from": "Heidi Campbell",
-            "entity_to": "Tennessee State Senate",
-            "modality": "Membership",
+            "entity_to": "Sierra Club - Tennessee Chapter",
+            "modality": "Social Connectivity",
             "healthy_unhealthy": "Healthy",
-            "health_term": "Representation",
-            "subtype": "Legislative Role",
-            "vector": "A to B",
-            "significance": "Senator advocating for EPR policies",
+            "health_term": "Shared Advocacy",
+            "subtype": "Environmental Justice",
+            "vector": "Bidirectional",
+            "significance": "Aligned on goals for EPR and sustainability in Tennessee",
             "related_purpose_nodes": [
-                "Environmental Sustainability",
-                "Public Health and Environmental Justice"
-            ],
-            "related_system": "Tennessee Legislative System"
-        },
-        {
-            "entity_from": "Heidi Campbell",
-            "entity_to": "Tennessee Environmental Council",
-            "modality": "Collaboration",
-            "healthy_unhealthy": "Healthy",
-            "health_term": "Policy Support",
-            "subtype": "Environmental Advocacy",
-            "vector": "A to B",
-            "significance": "Supports EPR initiatives through environmental advocacy",
-            "related_purpose_nodes": [
-                "Environmental Sustainability",
                 "Public Health and Environmental Justice",
                 "Community Well-being"
             ],
@@ -508,26 +346,11 @@
         },
         {
             "entity_from": "Andrew Tavi",
-            "entity_to": "Tennessee Chamber of Commerce",
-            "modality": "Membership",
-            "healthy_unhealthy": "Healthy",
-            "health_term": "Representation",
-            "subtype": "Business Leadership",
-            "vector": "A to B",
-            "significance": "Board Chair advocating for business interests",
-            "related_purpose_nodes": [
-                "Business Competitiveness",
-                "Shareholder Value"
-            ],
-            "related_system": "Corporate Advocacy Network"
-        },
-        {
-            "entity_from": "Andrew Tavi",
             "entity_to": "Flexible Packaging Association",
-            "modality": "Membership",
+            "modality": "Transactional Relationships",
             "healthy_unhealthy": "Healthy",
-            "health_term": "Representation",
-            "subtype": "Industry Leadership",
+            "health_term": "Exchange",
+            "subtype": "Policy Advocacy",
             "vector": "A to B",
             "significance": "Supports FPA to minimize regulatory impacts on packaging",
             "related_purpose_nodes": [
@@ -537,28 +360,73 @@
             "related_system": "Corporate Advocacy Network"
         },
         {
-            "entity_from": "Scott Cassel",
-            "entity_to": "Product Stewardship Institute (PSI)",
-            "modality": "Membership",
+            "entity_from": "Economic Growth of Tennessee",
+            "entity_to": "Orange (Modernist)",
+            "modality": "Collaborative Dynamics",
             "healthy_unhealthy": "Healthy",
-            "health_term": "Leadership",
-            "subtype": "Policy Leadership",
+            "health_term": "Strategic Alignment",
+            "subtype": "Economic Development",
             "vector": "A to B",
-            "significance": "Leads public policy initiatives for EPR",
+            "significance": "Orange v-Meme aligns with goals for economic success",
+            "related_purpose_nodes": [
+                "Economic Growth of Tennessee",
+                "Shareholder Value"
+            ],
+            "related_system": "Economic Development System"
+        },
+        {
+            "entity_from": "Environmental Sustainability",
+            "entity_to": "Green (Postmodern)",
+            "modality": "Social Connectivity",
+            "healthy_unhealthy": "Healthy",
+            "health_term": "Value Alignment",
+            "subtype": "Environmental Advocacy",
+            "vector": "A to B",
+            "significance": "Green v-Meme focuses on sustainable practices and equity",
             "related_purpose_nodes": [
                 "Environmental Sustainability",
-                "Circular Economy"
+                "Community Well-being"
             ],
-            "related_system": "EPR Policy Network"
+            "related_system": "Environmental Advocacy System"
+        },
+        {
+            "entity_from": "Circular Economy",
+            "entity_to": "Yellow (Systemic)",
+            "modality": "Collaborative Dynamics",
+            "healthy_unhealthy": "Healthy",
+            "health_term": "Systemic Integration",
+            "subtype": "Resource Efficiency",
+            "vector": "A to B",
+            "significance": "Yellow v-Meme emphasizes interconnected systemic approaches",
+            "related_purpose_nodes": [
+                "Circular Economy",
+                "Waste Management"
+            ],
+            "related_system": "Global Sustainability System"
+        },
+        {
+            "entity_from": "Heidi Campbell",
+            "entity_to": "Tennessee State Senate",
+            "modality": "Collaborative Dynamics",
+            "healthy_unhealthy": "Healthy",
+            "health_term": "Advocacy",
+            "subtype": "Environmental Policy Support",
+            "vector": "B to A",
+            "significance": "Supports EPR and aims to influence legislative outcomes through Senate",
+            "related_purpose_nodes": [
+                "Environmental Sustainability",
+                "Public Health and Environmental Justice"
+            ],
+            "related_system": "Tennessee Legislative System"
         },
         {
             "entity_from": "Frank Niceley",
             "entity_to": "Tennessee State Senate",
-            "modality": "Membership",
+            "modality": "Collaborative Dynamics",
             "healthy_unhealthy": "Healthy",
             "health_term": "Representation",
             "subtype": "Business Advocacy",
-            "vector": "A to B",
+            "vector": "B to A",
             "significance": "Advocates for rural business interests, opposes EPR",
             "related_purpose_nodes": [
                 "Economic Growth of Tennessee",
@@ -569,11 +437,11 @@
         {
             "entity_from": "Jack Johnson",
             "entity_to": "Tennessee State Senate",
-            "modality": "Membership",
+            "modality": "Power Relations",
             "healthy_unhealthy": "Healthy",
             "health_term": "Influence",
             "subtype": "Regulatory Resistance",
-            "vector": "A to B",
+            "vector": "B to A",
             "significance": "Seeks to limit regulation impacting businesses, opposes EPR",
             "related_purpose_nodes": [
                 "Shareholder Value",
@@ -581,139 +449,65 @@
             ],
             "related_system": "Tennessee Legislative System"
         },
-
-        // Purpose Set to Super-Purpose Relationships
         {
-            "entity_from": "Economic Growth of Tennessee",
-            "entity_to": "Orange (Modernist)",
-            "modality": "Alignment",
+            "entity_from": "Frank Niceley",
+            "entity_to": "Economic Growth of Tennessee",
+            "modality": "Transactional Relationships",
             "healthy_unhealthy": "Healthy",
-            "health_term": "Strategic Alignment",
-            "subtype": "Purpose Alignment",
+            "health_term": "Advocacy",
+            "subtype": "Economic Development",
             "vector": "A to B",
-            "significance": "Aligns economic growth with Orange super-purpose",
-            "related_purpose_nodes": [],
-            "related_system": ""
+            "significance": "Supports policies that protect economic interests of businesses in rural areas",
+            "related_purpose_nodes": [
+                "Economic Growth of Tennessee",
+                "Business Competitiveness"
+            ],
+            "related_system": "Tennessee Legislative System"
         },
         {
-            "entity_from": "Environmental Sustainability",
-            "entity_to": "Green (Postmodern)",
-            "modality": "Alignment",
+            "entity_from": "Jack Johnson",
+            "entity_to": "Business Competitiveness",
+            "modality": "Power Relations",
             "healthy_unhealthy": "Healthy",
-            "health_term": "Value Alignment",
-            "subtype": "Purpose Alignment",
+            "health_term": "Strategic Influence",
+            "subtype": "Policy Advocacy",
             "vector": "A to B",
-            "significance": "Aligns environmental sustainability with Green super-purpose",
-            "related_purpose_nodes": [],
-            "related_system": ""
+            "significance": "Aligns with business interests to minimize regulatory impact",
+            "related_purpose_nodes": [
+                "Shareholder Value",
+                "Economic Growth of Tennessee"
+            ],
+            "related_system": "Tennessee Legislative System"
         },
         {
-            "entity_from": "Environmental Sustainability",
-            "entity_to": "Yellow (Systemic)",
-            "modality": "Alignment",
+            "entity_from": "Tennessee State Senate",
+            "entity_to": "Tennessee Chamber of Commerce",
+            "modality": "Collaborative Dynamics",
             "healthy_unhealthy": "Healthy",
-            "health_term": "Systemic Alignment",
-            "subtype": "Purpose Alignment",
-            "vector": "A to B",
-            "significance": "Aligns environmental sustainability with Yellow super-purpose",
-            "related_purpose_nodes": [],
-            "related_system": ""
+            "health_term": "Economic Alignment",
+            "subtype": "Policy Influence",
+            "vector": "Bidirectional",
+            "significance": "Shares interests in policies that reduce regulatory burdens",
+            "related_purpose_nodes": [
+                "Business Competitiveness",
+                "Economic Growth of Tennessee"
+            ],
+            "related_system": "Tennessee EPR System"
         },
         {
-            "entity_from": "Public Health and Environmental Justice",
-            "entity_to": "Green (Postmodern)",
-            "modality": "Alignment",
+            "entity_from": "Tennessee House of Representatives",
+            "entity_to": "Tennessee Chamber of Commerce",
+            "modality": "Collaborative Dynamics",
             "healthy_unhealthy": "Healthy",
-            "health_term": "Value Alignment",
-            "subtype": "Purpose Alignment",
-            "vector": "A to B",
-            "significance": "Aligns public health and environmental justice with Green super-purpose",
-            "related_purpose_nodes": [],
-            "related_system": ""
-        },
-        {
-            "entity_from": "Circular Economy",
-            "entity_to": "Yellow (Systemic)",
-            "modality": "Alignment",
-            "healthy_unhealthy": "Healthy",
-            "health_term": "Systemic Alignment",
-            "subtype": "Purpose Alignment",
-            "vector": "A to B",
-            "significance": "Aligns circular economy with Yellow super-purpose",
-            "related_purpose_nodes": [],
-            "related_system": ""
-        },
-        {
-            "entity_from": "Business Competitiveness",
-            "entity_to": "Orange (Modernist)",
-            "modality": "Alignment",
-            "healthy_unhealthy": "Healthy",
-            "health_term": "Strategic Alignment",
-            "subtype": "Purpose Alignment",
-            "vector": "A to B",
-            "significance": "Aligns business competitiveness with Orange super-purpose",
-            "related_purpose_nodes": [],
-            "related_system": ""
-        },
-        {
-            "entity_from": "Manufacturing Sector Growth",
-            "entity_to": "Orange (Modernist)",
-            "modality": "Alignment",
-            "healthy_unhealthy": "Healthy",
-            "health_term": "Strategic Alignment",
-            "subtype": "Purpose Alignment",
-            "vector": "A to B",
-            "significance": "Aligns manufacturing sector growth with Orange super-purpose",
-            "related_purpose_nodes": [],
-            "related_system": ""
-        },
-        {
-            "entity_from": "Shareholder Value",
-            "entity_to": "Orange (Modernist)",
-            "modality": "Alignment",
-            "healthy_unhealthy": "Healthy",
-            "health_term": "Strategic Alignment",
-            "subtype": "Purpose Alignment",
-            "vector": "A to B",
-            "significance": "Aligns shareholder value with Orange super-purpose",
-            "related_purpose_nodes": [],
-            "related_system": ""
-        },
-        {
-            "entity_from": "Waste Management",
-            "entity_to": "Yellow (Systemic)",
-            "modality": "Alignment",
-            "healthy_unhealthy": "Healthy",
-            "health_term": "Systemic Alignment",
-            "subtype": "Purpose Alignment",
-            "vector": "A to B",
-            "significance": "Aligns waste management with Yellow super-purpose",
-            "related_purpose_nodes": [],
-            "related_system": ""
-        },
-        {
-            "entity_from": "Community Well-being",
-            "entity_to": "Green (Postmodern)",
-            "modality": "Alignment",
-            "healthy_unhealthy": "Healthy",
-            "health_term": "Value Alignment",
-            "subtype": "Purpose Alignment",
-            "vector": "A to B",
-            "significance": "Aligns community well-being with Green super-purpose",
-            "related_purpose_nodes": [],
-            "related_system": ""
-        },
-        {
-            "entity_from": "Recycling Infrastructure",
-            "entity_to": "Yellow (Systemic)",
-            "modality": "Alignment",
-            "healthy_unhealthy": "Healthy",
-            "health_term": "Systemic Alignment",
-            "subtype": "Purpose Alignment",
-            "vector": "A to B",
-            "significance": "Aligns recycling infrastructure with Yellow super-purpose",
-            "related_purpose_nodes": [],
-            "related_system": ""
+            "health_term": "Policy Collaboration",
+            "subtype": "Legislative Alignment",
+            "vector": "Bidirectional",
+            "significance": "Supports pro-business legislation alongside the Chamber",
+            "related_purpose_nodes": [
+                "Economic Growth of Tennessee",
+                "Business Competitiveness"
+            ],
+            "related_system": "Tennessee Legislative System"
         }
     ]
 }
