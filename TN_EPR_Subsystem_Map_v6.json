@@ -1,231 +1,63 @@
 {
   "nodes": [
     {
-      "id": "Economic Success",
-      "type": "Super-Purpose Node",
-      "description": "Prioritizing economic growth and stability as a core value system."
-    },
-    {
-      "id": "Environmental Stewardship",
-      "type": "Super-Purpose Node",
-      "description": "Emphasizing responsible management and protection of the environment."
-    },
-    {
-      "id": "Social Equity",
-      "type": "Super-Purpose Node",
-      "description": "Promoting fairness, justice, and equal opportunities for all members of society."
-    },
-    {
-      "id": "Economic Growth of Tennessee",
-      "type": "Purpose Set",
-      "description": "Initiatives and policies focused on fostering economic expansion within the state."
-    },
-    {
-      "id": "Environmental Sustainability of Tennessee",
-      "type": "Purpose Set",
-      "description": "Efforts to preserve and enhance the environment for future generations in Tennessee."
-    },
-    {
-      "id": "Social Well-being of Tennesseans",
-      "type": "Purpose Set",
-      "description": "Actions aimed at improving the quality of life and addressing social needs of Tennessee residents."
-    },
-    {
-      "id": "Business Competitiveness",
-      "type": "Purpose",
-      "description": "Maintaining and improving the ability of businesses to compete effectively in the market."
-    },
-    {
-      "id": "Waste Reduction",
-      "type": "Purpose",
-      "description": "Minimizing the amount of waste generated and sent to landfills."
-    },
-    {
-      "id": "Recycling Infrastructure",
-      "type": "Purpose",
-      "description": "Developing and expanding systems for collecting, processing, and reusing recyclable materials."
-    },
-    {
-      "id": "Circular Economy",
-      "type": "Purpose",
-      "description": "Transitioning to a model where resources are used and reused in a closed loop system."
-    },
-    {
       "id": "Tennessee Chamber of Commerce",
-      "type": "Organization",
-      "description": "Advocating for business-friendly policies and economic growth."
+      "type": "Organization"
     },
     {
       "id": "Tennessee Manufacturers Association",
-      "type": "Organization",
-      "description": "Representing the interests of manufacturers in Tennessee."
+      "type": "Organization"
     },
     {
       "id": "Sustainable Food Policy Alliance",
-      "type": "Organization",
-      "description": "Promoting sustainable food policies through collaboration."
+      "type": "Organization"
     },
     {
       "id": "Tennessee Environmental Council",
-      "type": "Organization",
-      "description": "Advocating for environmental protection and conservation in Tennessee."
+      "type": "Organization"
     },
     {
-      "id": "Flexible Packaging Association",
-      "type": "Organization",
-      "description": "Representing the flexible packaging industry and promoting sustainable solutions."
+      "id": "Business Competitiveness",
+      "type": "Purpose"
     },
     {
-      "id": "Heidi Campbell",
-      "type": "Individual",
-      "description": "State Senator advocating for EPR legislation in Tennessee."
+      "id": "Circular Economy",
+      "type": "Purpose"
     },
     {
-      "id": "Frank Niceley",
-      "type": "Individual",
-      "description": "State Senator opposed to EPR legislation in Tennessee."
+      "id": "Waste Reduction",
+      "type": "Purpose"
+    },
+    {
+      "id": "Recycling Infrastructure",
+      "type": "Purpose"
     }
   ],
   "edges": [
     {
-      "entity_from": "Economic Success",
-      "entity_to": "Economic Growth of Tennessee",
-      "modality": "Guided By",
-      "significance": 1,
-      "description": "Economic Success drives Economic Growth initiatives."
-    },
-    {
-      "entity_from": "Environmental Stewardship",
-      "entity_to": "Environmental Sustainability of Tennessee",
-      "modality": "Guided By",
-      "significance": 1,
-      "description": "Environmental Stewardship drives initiatives for Environmental Sustainability in Tennessee."
-    },
-    {
-      "entity_from": "Social Equity",
-      "entity_to": "Social Well-being of Tennesseans",
-      "modality": "Guided By",
-      "significance": 1,
-      "description": "Social Equity guides actions for the Well-being of Tennesseans."
-    },
-    {
-      "entity_from": "Economic Growth of Tennessee",
-      "entity_to": "Business Competitiveness",
-      "modality": "Contains",
-      "significance": 1,
-      "description": "Economic Growth encompasses Business Competitiveness."
-    },
-    {
-      "entity_from": "Business Competitiveness",
-      "entity_to": "Economic Growth of Tennessee",
-      "modality": "Belongs To",
-      "significance": 1,
-      "description": "Business Competitiveness is a part of Economic Growth."
-    },
-    {
-      "entity_from": "Environmental Sustainability of Tennessee",
-      "entity_to": "Waste Reduction",
-      "modality": "Contains",
-      "significance": 1,
-      "description": "Environmental Sustainability includes Waste Reduction."
-    },
-    {
-      "entity_from": "Waste Reduction",
-      "entity_to": "Environmental Sustainability of Tennessee",
-      "modality": "Belongs To",
-      "significance": 1,
-      "description": "Waste Reduction is a component of Environmental Sustainability."
-    },
-    {
-      "entity_from": "Environmental Sustainability of Tennessee",
-      "entity_to": "Recycling Infrastructure",
-      "modality": "Contains",
-      "significance": 1,
-      "description": "Environmental Sustainability involves Recycling Infrastructure."
-    },
-    {
-      "entity_from": "Recycling Infrastructure",
-      "entity_to": "Environmental Sustainability of Tennessee",
-      "modality": "Belongs To",
-      "significance": 1,
-      "description": "Recycling Infrastructure contributes to Environmental Sustainability."
-    },
-    {
       "entity_from": "Tennessee Chamber of Commerce",
       "entity_to": "Business Competitiveness",
-      "modality": "Supports",
-      "significance": 1,
-      "description": "The Chamber's advocacy for minimizing regulatory impacts and promoting economic sustainability directly supports the purpose of maintaining and improving business competitiveness in the context of EPR legislation."
+      "modality": "Supports"
     },
     {
       "entity_from": "Tennessee Manufacturers Association",
       "entity_to": "Business Competitiveness",
-      "modality": "Supports",
-      "significance": 1,
-      "description": "The Association's role in representing manufacturers' interests likely includes supporting policies that enhance business competitiveness."
+      "modality": "Supports"
     },
     {
       "entity_from": "Sustainable Food Policy Alliance",
       "entity_to": "Circular Economy",
-      "modality": "Supports",
-      "significance": 1,
-      "description": "The Alliance's focus on sustainable food policies aligns with promoting a Circular Economy."
+      "modality": "Supports"
     },
     {
       "entity_from": "Tennessee Environmental Council",
       "entity_to": "Waste Reduction",
-      "modality": "Supports",
-      "significance": 1,
-      "description": "As an environmental advocacy group, they are likely to support initiatives for Waste Reduction."
+      "modality": "Supports"
     },
     {
       "entity_from": "Tennessee Environmental Council",
       "entity_to": "Recycling Infrastructure",
-      "modality": "Supports",
-      "significance": 1,
-      "description": "Environmental groups often advocate for improved Recycling Infrastructure."
-    },
-    {
-      "entity_from": "Flexible Packaging Association",
-      "entity_to": "Circular Economy",
-      "modality": "Supports",
-      "significance": 1,
-      "description": "The Association, while representing the packaging industry, might still support the broader concept of a Circular Economy, although their stance on specific EPR regulations might be more nuanced."
-    },
-    {
-      "entity_from": "Heidi Campbell",
-      "entity_to": "Waste Reduction",
-      "modality": "Supports",
-      "significance": 1,
-      "description": "As a proponent of EPR, she likely supports its aim of Waste Reduction."
-    },
-    {
-      "entity_from": "Heidi Campbell",
-      "entity_to": "Recycling Infrastructure",
-      "modality": "Supports",
-      "significance": 1,
-      "description": "Support for EPR often includes advocating for better Recycling Infrastructure."
-    },
-    {
-      "entity_from": "Frank Niceley",
-      "entity_to": "Business Competitiveness",
-      "modality": "Supports",
-      "significance": 1,
-      "description": "His opposition to EPR suggests a prioritization of Business Competitiveness, potentially viewing EPR as negatively impacting it."
-    },
-    {
-      "entity_from": "Frank Niceley",
-      "entity_to": "Waste Reduction",
-      "modality": "Opposes",
-      "significance": -1,
-      "description": "Opposition to EPR implies a stance against its core objective of Waste Reduction."
-    },
-    {
-      "entity_from": "Frank Niceley",
-      "entity_to": "Recycling Infrastructure",
-      "modality": "Opposes",
-      "significance": -1,
-      "description": "His opposition to EPR likely extends to opposing investments in Recycling Infrastructure."
+      "modality": "Supports"
     }
   ]
 }
